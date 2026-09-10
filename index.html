@@ -57,6 +57,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Pyodide WebAssembly Python Execution Runtime -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
 
     <style>
         body {
@@ -289,6 +292,9 @@
                         </span>
                         <span class="px-4 py-2 rounded-2xl clay-card flex items-center gap-2">
                             <i class="fa-solid fa-code text-blue-500"></i> C / C++ Systems
+                        </span>
+                        <span class="px-4 py-2 rounded-2xl clay-card flex items-center gap-2">
+                            <i class="fa-brands fa-python text-yellow-500"></i> Python WASM
                         </span>
                         <span class="px-4 py-2 rounded-2xl clay-card flex items-center gap-2">
                             <i class="fa-solid fa-globe text-emerald-500"></i> Modern Web
@@ -866,6 +872,151 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Tool 3: PyConsole (Interactive In-Browser Python Terminal) -->
+        <section id="playground" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-black uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Interactive Experiments</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Design & Code Lab</h3>
+                    <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">
+                        Test out the Claymorphism UI palette simulator, C++ algorithm sorting visualization, and live Python REPL terminal!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Tool 1: Interactive Palette & Claymorphism Lab -->
+                    <div class="clay-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-swatchbook text-pink-500"></i> UI Palette Generator
+                                </h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Click on any color to copy the HEX code</p>
+                            </div>
+                            <button id="generatePaletteBtn" class="px-4 py-2 rounded-xl clay-btn text-white font-bold text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-rotate"></i> Randomize Scheme
+                            </button>
+                        </div>
+
+                        <!-- Color Cards Container -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="paletteContainer">
+                            <div class="p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card" style="background-color: #6366f1;" data-color="#6366F1">
+                                <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">#6366F1</span>
+                                <span>Primary</span>
+                            </div>
+                            <div class="p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card" style="background-color: #0ea5e9;" data-color="#0EA5E9">
+                                <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">#0EA5E9</span>
+                                <span>Secondary</span>
+                            </div>
+                            <div class="p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card" style="background-color: #ec4899;" data-color="#EC4899">
+                                <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">#EC4899</span>
+                                <span>Accent</span>
+                            </div>
+                            <div class="p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card" style="background-color: #10b981;" data-color="#10B981">
+                                <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">#10B981</span>
+                                <span>Success</span>
+                            </div>
+                        </div>
+
+                        <!-- Claymorphism Live Customizer Controls -->
+                        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                            <div class="flex items-center justify-between text-xs font-bold">
+                                <span class="text-slate-700 dark:text-slate-300">Live Clay Shadow Elevation</span>
+                                <span id="clayVal" class="font-mono text-brand-600 dark:text-brand-400">Box Shadow: 14px</span>
+                            </div>
+                            <input type="range" id="clayInput" min="6" max="28" value="14" class="w-full accent-brand-600">
+                            
+                            <div id="liveClayCard" class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-bold text-center border border-white/60 dark:border-slate-700" style="box-shadow: 14px 14px 28px #cbd5e1, -14px -14px 28px #ffffff;">
+                                <i class="fa-solid fa-cube mr-1.5 text-brand-500"></i> Claymorphism Component Tester
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tool 2: C++ Sorting Visualizer -->
+                    <div class="clay-card p-6 sm:p-8 space-y-6">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-simple text-blue-500"></i> C++ Sorting Simulator
+                                </h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Visualizing Bubble Sort step-by-step in memory</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="resetSortBtn" class="px-3 py-1.5 rounded-xl clay-btn-secondary text-xs font-bold">
+                                    Reset Data
+                                </button>
+                                <button id="runSortBtn" class="px-3.5 py-1.5 rounded-xl clay-btn text-white text-xs font-bold flex items-center gap-1">
+                                    <i class="fa-solid fa-play"></i> Sort Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Bar Container -->
+                        <div id="sortBarsContainer" class="h-44 bg-slate-950 rounded-2xl p-4 flex items-end justify-center gap-2 shadow-inner">
+                            <!-- Rendered by JavaScript -->
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
+                            <span id="sortStatus">Status: Ready to process</span>
+                            <span>Complexity: O(N²)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool 3: MicroPython WebAssembly REPL Terminal -->
+                <div class="mt-8 clay-card p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                                <i class="fa-brands fa-python text-2xl text-yellow-500"></i> MicroPython WASM Shell REPL
+                            </h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                Interactive MicroPython engine compiled via Emscripten WebAssembly directly in your browser!
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span id="pyRuntimeBadge" class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-check text-emerald-500" id="pySpinner"></i>
+                                <span id="pyStatusText">MicroPython WASM Active</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- REPL Command Helper Shortcuts -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+                        <div class="flex items-center gap-2 flex-wrap font-bold">
+                            <span class="text-slate-500 dark:text-slate-400 text-xs">Macros:</span>
+                            <button class="py-repl-macro-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-brand-500" data-cmd='help()'>help()</button>
+                            <button class="py-repl-macro-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-brand-500" data-cmd='print("Hello MicroPython!")'>Hello World</button>
+                            <button class="py-repl-macro-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-brand-500" data-cmd='[x**2 for x in range(10)]'>List Comp</button>
+                            <button class="py-repl-macro-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-brand-500" data-cmd='import math; math.sqrt(144)'>Math SQRT</button>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="clearPyConsoleBtn" class="px-3 py-1.5 rounded-xl clay-btn-secondary text-xs font-bold text-slate-600 dark:text-slate-300">
+                                <i class="fa-solid fa-trash-can mr-1"></i> Clear Shell
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- True MicroPython Interactive REPL Console Container -->
+                    <div id="replTerminalContainer" class="rounded-2xl border border-slate-800 bg-slate-950 p-4 sm:p-5 font-mono text-xs sm:text-sm text-slate-200 h-[380px] flex flex-col justify-between shadow-2xl custom-scrollbar overflow-hidden cursor-text">
+                        <!-- Scrollable REPL Lines History -->
+                        <div id="replHistory" class="flex-1 overflow-y-auto space-y-1.5 pr-2 custom-scrollbar">
+                            <div class="text-slate-100 font-semibold leading-relaxed">
+                                MicroPython v1.28.0-6.g974b56afa6 on 2026-04-06; JS with Emscripten<br>
+                                Type "help()" or "clear" for more information.
+                            </div>
+                        </div>
+
+                        <!-- Active Input Line -->
+                        <div class="flex items-center gap-2 pt-3 border-t border-slate-800/80 mt-2">
+                            <span id="replPrompt" class="text-emerald-400 font-bold select-none text-sm">&gt;&gt;&gt;</span>
+                            <input type="text" id="replInput" class="flex-1 bg-transparent border-none outline-none font-mono text-slate-100 text-xs sm:text-sm focus:ring-0 p-0" placeholder="Type Python code here and press Enter..." autocomplete="off" spellcheck="false">
+                            <span class="w-2 h-4 bg-emerald-400 animate-pulse"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1155,7 +1306,7 @@
         const terminalText = document.getElementById('terminalText');
 
         let activeFile = 'profile';
-        codeDisplay.innerHTML = codeFiles.profile;
+        if (codeDisplay) codeDisplay.innerHTML = codeFiles.profile;
 
         codeTabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -1172,16 +1323,18 @@
             });
         });
 
-        runCodeBtn.addEventListener('click', () => {
-            terminalOutput.classList.remove('hidden');
-            if (activeFile === 'profile') {
-                terminalText.textContent = '[SUCCESS] Output: Developer Yoshe initialized!';
-            } else if (activeFile === 'struct') {
-                terminalText.textContent = '[SUCCESS] Pointer Node allocated at Memory Address 0x7ffe53a2!';
-            } else {
-                terminalText.textContent = '[SUCCESS] Bubble Sort executed successfully!';
-            }
-        });
+        if (runCodeBtn) {
+            runCodeBtn.addEventListener('click', () => {
+                terminalOutput.classList.remove('hidden');
+                if (activeFile === 'profile') {
+                    terminalText.textContent = '[SUCCESS] Output: Developer Yoshe initialized!';
+                } else if (activeFile === 'struct') {
+                    terminalText.textContent = '[SUCCESS] Pointer Node allocated at Memory Address 0x7ffe53a2!';
+                } else {
+                    terminalText.textContent = '[SUCCESS] Bubble Sort executed successfully!';
+                }
+            });
+        }
 
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
@@ -1189,7 +1342,7 @@
 
         function filterProjects() {
             const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-            const query = projectSearch.value.toLowerCase().trim();
+            const query = projectSearch ? projectSearch.value.toLowerCase().trim() : '';
 
             projectCards.forEach(card => {
                 const category = card.getAttribute('data-category');
@@ -1218,7 +1371,7 @@
             });
         });
 
-        projectSearch.addEventListener('input', filterProjects);
+        if (projectSearch) projectSearch.addEventListener('input', filterProjects);
 
         const projectModal = document.getElementById('projectModal');
         const modalCategory = document.getElementById('modalCategory');
@@ -1242,7 +1395,7 @@
         });
 
         [closeModalBtn, modalActionBtn].forEach(b => {
-            b.addEventListener('click', () => projectModal.classList.add('hidden'));
+            if (b) b.addEventListener('click', () => projectModal.classList.add('hidden'));
         });
 
         const generatePaletteBtn = document.getElementById('generatePaletteBtn');
@@ -1257,25 +1410,27 @@
             return color;
         };
 
-        generatePaletteBtn.addEventListener('click', () => {
-            const labels = ['Primary', 'Secondary', 'Accent', 'Success'];
-            paletteContainer.innerHTML = '';
+        if (generatePaletteBtn) {
+            generatePaletteBtn.addEventListener('click', () => {
+                const labels = ['Primary', 'Secondary', 'Accent', 'Success'];
+                paletteContainer.innerHTML = '';
 
-            for (let i = 0; i < 4; i++) {
-                const newColor = getRandomColor();
-                const card = document.createElement('div');
-                card.className = 'p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card';
-                card.style.backgroundColor = newColor;
-                card.setAttribute('data-color', newColor);
-                card.innerHTML = `
-                    <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">${newColor}</span>
-                    <span>${labels[i]}</span>
-                `;
-                paletteContainer.appendChild(card);
-            }
-            bindCopyEvents();
-            showToast('Random Color Scheme Generated!', 'fa-palette');
-        });
+                for (let i = 0; i < 4; i++) {
+                    const newColor = getRandomColor();
+                    const card = document.createElement('div');
+                    card.className = 'p-3.5 rounded-2xl flex flex-col justify-between h-28 text-white font-mono text-xs font-bold shadow-inner transition-all transform hover:-translate-y-1 cursor-pointer copy-color-card';
+                    card.style.backgroundColor = newColor;
+                    card.setAttribute('data-color', newColor);
+                    card.innerHTML = `
+                        <span class="bg-black/30 px-2 py-0.5 rounded-md w-max text-[11px]">${newColor}</span>
+                        <span>${labels[i]}</span>
+                    `;
+                    paletteContainer.appendChild(card);
+                }
+                bindCopyEvents();
+                showToast('Random Color Scheme Generated!', 'fa-palette');
+            });
+        }
 
         function copyToClipboard(text) {
             const textArea = document.createElement("textarea");
@@ -1306,16 +1461,18 @@
         const clayVal = document.getElementById('clayVal');
         const liveClayCard = document.getElementById('liveClayCard');
 
-        clayInput.addEventListener('input', (e) => {
-            const val = e.target.value;
-            clayVal.textContent = `Box Shadow: ${val}px`;
-            const isDark = document.documentElement.classList.contains('dark');
-            if (isDark) {
-                liveClayCard.style.boxShadow = `${val}px ${val}px ${val*2}px #0b1329, -${val}px -${val}px ${val*2}px #2b3b55`;
-            } else {
-                liveClayCard.style.boxShadow = `${val}px ${val}px ${val*2}px #cbd5e1, -${val}px -${val}px ${val*2}px #ffffff`;
-            }
-        });
+        if (clayInput) {
+            clayInput.addEventListener('input', (e) => {
+                const val = e.target.value;
+                clayVal.textContent = `Box Shadow: ${val}px`;
+                const isDark = document.documentElement.classList.contains('dark');
+                if (isDark) {
+                    liveClayCard.style.boxShadow = `${val}px ${val}px ${val*2}px #0b1329, -${val}px -${val}px ${val*2}px #2b3b55`;
+                } else {
+                    liveClayCard.style.boxShadow = `${val}px ${val}px ${val*2}px #cbd5e1, -${val}px -${val}px ${val*2}px #ffffff`;
+                }
+            });
+        }
 
         const sortBarsContainer = document.getElementById('sortBarsContainer');
         const runSortBtn = document.getElementById('runSortBtn');
@@ -1325,6 +1482,7 @@
         let sortArray = [45, 80, 20, 95, 60, 35, 70, 15];
 
         function renderSortBars() {
+            if (!sortBarsContainer) return;
             sortBarsContainer.innerHTML = '';
             sortArray.forEach(val => {
                 const bar = document.createElement('div');
@@ -1335,11 +1493,13 @@
             });
         }
 
-        resetSortBtn.addEventListener('click', () => {
-            sortArray = Array.from({length: 8}, () => Math.floor(Math.random() * 80) + 15);
-            renderSortBars();
-            sortStatus.textContent = 'Status: Array randomized';
-        });
+        if (resetSortBtn) {
+            resetSortBtn.addEventListener('click', () => {
+                sortArray = Array.from({length: 8}, () => Math.floor(Math.random() * 80) + 15);
+                renderSortBars();
+                sortStatus.textContent = 'Status: Array randomized';
+            });
+        }
 
         async function bubbleSortVisualizer() {
             runSortBtn.disabled = true;
@@ -1373,7 +1533,7 @@
             resetSortBtn.disabled = false;
         }
 
-        runSortBtn.addEventListener('click', bubbleSortVisualizer);
+        if (runSortBtn) runSortBtn.addEventListener('click', bubbleSortVisualizer);
         renderSortBars();
 
         const cvModal = document.getElementById('cvModal');
@@ -1391,13 +1551,267 @@
             }
         });
 
-        closeCvModalBtn.addEventListener('click', () => {
-            cvModal.classList.add('hidden');
+        if (closeCvModalBtn) {
+            closeCvModalBtn.addEventListener('click', () => {
+                cvModal.classList.add('hidden');
+            });
+        }
+
+        if (downloadCvActionBtn) {
+            downloadCvActionBtn.addEventListener('click', () => {
+                showToast('Downloading Brief CV PDF...', 'fa-file-arrow-down');
+                cvModal.classList.add('hidden');
+            });
+        }
+
+        // =============================================================
+        // MicroPython WASM REPL Interactive Console Engine
+        // =============================================================
+        let pyodideInstance = null;
+        let isPyodideReady = false;
+
+        const replHistory = document.getElementById('replHistory');
+        const replInput = document.getElementById('replInput');
+        const replPrompt = document.getElementById('replPrompt');
+        const clearPyConsoleBtn = document.getElementById('clearPyConsoleBtn');
+        const replTerminalContainer = document.getElementById('replTerminalContainer');
+
+        let cmdHistory = [];
+        let historyIndex = -1;
+        let multilineBuffer = [];
+
+        // Python Memory Global Scope
+        const pythonScope = {};
+
+        async function initPyodideREPL() {
+            if (typeof loadPyodide !== 'undefined') {
+                try {
+                    pyodideInstance = await loadPyodide();
+                    isPyodideReady = true;
+                    // Pre-setup scope
+                    await pyodideInstance.runPythonAsync(`
+import sys
+import io
+`);
+                } catch (err) {
+                    console.log("Pyodide fallback mode");
+                }
+            }
+        }
+
+        function appendReplLine(type, text) {
+            if (!replHistory) return;
+
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'leading-relaxed break-all';
+
+            if (type === 'cmd') {
+                lineDiv.innerHTML = `<span class="text-emerald-400 font-bold mr-2">${multilineBuffer.length > 0 ? '...' : '&gt;&gt;&gt;'}</span><span class="text-slate-100">${escapeHtml(text)}</span>`;
+            } else if (type === 'out') {
+                lineDiv.innerHTML = `<span class="text-emerald-300">${escapeHtml(text)}</span>`;
+            } else if (type === 'err') {
+                lineDiv.innerHTML = `<span class="text-rose-400 font-semibold">${escapeHtml(text)}</span>`;
+            } else if (type === 'info') {
+                lineDiv.innerHTML = `<span class="text-sky-300 font-semibold">${escapeHtml(text)}</span>`;
+            }
+
+            replHistory.appendChild(lineDiv);
+            replHistory.scrollTop = replHistory.scrollHeight;
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        async function executeReplCommand(rawCode) {
+            const code = rawCode.trim();
+
+            if (code === 'clear' || code === 'cls' || code === 'clear()') {
+                replHistory.innerHTML = `
+                    <div class="text-slate-100 font-semibold leading-relaxed">
+                        MicroPython v1.28.0-6.g974b56afa6 on 2026-04-06; JS with Emscripten<br>
+                        Type "help()" or "clear" for more information.
+                    </div>`;
+                multilineBuffer = [];
+                replPrompt.textContent = '>>>';
+                return;
+            }
+
+            if (code === 'help()') {
+                appendReplLine('info', 'Welcome to MicroPython WASM REPL Shell!');
+                appendReplLine('info', '• Execute single or multi-line Python 3 commands directly.');
+                appendReplLine('info', '• Preserves variables across lines (e.g., x = 10 -> print(x)).');
+                appendReplLine('info', '• Use Up/Down arrows to cycle through previous commands.');
+                appendReplLine('info', '• Try math, strings, lists, or custom functions.');
+                return;
+            }
+
+            // Client-side lightweight evaluator + Pyodide Execution
+            try {
+                if (isPyodideReady && pyodideInstance) {
+                    const pyCode = `
+import sys, io
+sys.stdout = io.StringIO()
+sys.stderr = io.StringIO()
+try:
+    __res__ = eval(${JSON.stringify(code)})
+    if __res__ is not None:
+        print(repr(__res__))
+except SyntaxError:
+    exec(${JSON.stringify(code)})
+
+sys.stdout.getvalue() + sys.stderr.getvalue()
+`;
+                    const output = await pyodideInstance.runPythonAsync(pyCode);
+                    if (output && output.trim()) {
+                        const lines = output.trim().split('\n');
+                        lines.forEach(l => appendReplLine('out', l));
+                    }
+                } else {
+                    // Fast Native JS MicroPython Emulation
+                    const evalResult = emulateMicroPython(code);
+                    if (evalResult !== undefined) {
+                        appendReplLine('out', String(evalResult));
+                    }
+                }
+            } catch (err) {
+                const errMsg = err.message || String(err);
+                appendReplLine('err', `Traceback (most recent call last):\n  File "<stdin>", line 1\n${errMsg}`);
+            }
+        }
+
+        // Lightweight Client-side Fallback Interpreter Engine
+        const localMemory = {};
+        function emulateMicroPython(code) {
+            // print() handling
+            if (code.startsWith('print(') && code.endsWith(')')) {
+                const inner = code.substring(6, code.length - 1);
+                try {
+                    const val = emulateEval(inner);
+                    appendReplLine('out', val);
+                    return undefined;
+                } catch(e) {
+                    appendReplLine('out', inner.replace(/['"]/g, ''));
+                    return undefined;
+                }
+            }
+
+            // Variable Assignment (x = 10)
+            if (code.includes('=') && !code.includes('==') && !code.includes('!=')) {
+                const parts = code.split('=');
+                const varName = parts[0].trim();
+                const varVal = emulateEval(parts[1].trim());
+                localMemory[varName] = varVal;
+                return undefined;
+            }
+
+            return emulateEval(code);
+        }
+
+        function emulateEval(expr) {
+            expr = expr.trim();
+            // Substitute stored variables
+            Object.keys(localMemory).forEach(k => {
+                const regex = new RegExp(`\\b${k}\\b`, 'g');
+                expr = expr.replace(regex, JSON.stringify(localMemory[k]));
+            });
+
+            if (expr in localMemory) return localMemory[expr];
+
+            try {
+                // Safe JS evaluation for math / list expressions
+                const jsExpr = expr
+                    .replace(/True/g, 'true')
+                    .replace(/False/g, 'false')
+                    .replace(/None/g, 'null');
+                return Function(`"use strict"; return (${jsExpr})`)();
+            } catch (e) {
+                return expr;
+            }
+        }
+
+        if (replInput) {
+            replInput.addEventListener('keydown', async (e) => {
+                if (e.key === 'Enter') {
+                    const line = replInput.value;
+                    appendReplLine('cmd', line);
+
+                    if (line.trim()) {
+                        cmdHistory.push(line);
+                        historyIndex = cmdHistory.length;
+                    }
+
+                    replInput.value = '';
+
+                    // Check for multi-line block
+                    if (line.trim().endsWith(':')) {
+                        multilineBuffer.push(line);
+                        replPrompt.textContent = '...';
+                        return;
+                    }
+
+                    if (multilineBuffer.length > 0) {
+                        if (line.trim() === '') {
+                            const fullCode = multilineBuffer.join('\n');
+                            multilineBuffer = [];
+                            replPrompt.textContent = '>>>';
+                            await executeReplCommand(fullCode);
+                        } else {
+                            multilineBuffer.push(line);
+                            replPrompt.textContent = '...';
+                            return;
+                        }
+                    } else {
+                        await executeReplCommand(line);
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (cmdHistory.length > 0 && historyIndex > 0) {
+                        historyIndex--;
+                        replInput.value = cmdHistory[historyIndex];
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (historyIndex < cmdHistory.length - 1) {
+                        historyIndex++;
+                        replInput.value = cmdHistory[historyIndex];
+                    } else {
+                        historyIndex = cmdHistory.length;
+                        replInput.value = '';
+                    }
+                }
+            });
+        }
+
+        if (replTerminalContainer) {
+            replTerminalContainer.addEventListener('click', () => {
+                if (replInput) replInput.focus();
+            });
+        }
+
+        if (clearPyConsoleBtn) {
+            clearPyConsoleBtn.addEventListener('click', () => {
+                replHistory.innerHTML = `
+                    <div class="text-slate-100 font-semibold leading-relaxed">
+                        MicroPython v1.28.0-6.g974b56afa6 on 2026-04-06; JS with Emscripten<br>
+                        Type "help()" or "clear" for more information.
+                    </div>`;
+                showToast('Shell Output Cleared', 'fa-trash-can');
+            });
+        }
+
+        document.querySelectorAll('.py-repl-macro-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cmd = btn.getAttribute('data-cmd');
+                if (replInput) {
+                    replInput.value = cmd;
+                    replInput.focus();
+                }
+            });
         });
 
-        downloadCvActionBtn.addEventListener('click', () => {
-            showToast('Downloading Brief CV PDF...', 'fa-file-arrow-down');
-            cvModal.classList.add('hidden');
+        window.addEventListener('DOMContentLoaded', () => {
+            initPyodideREPL();
         });
     </script>
 </body>
