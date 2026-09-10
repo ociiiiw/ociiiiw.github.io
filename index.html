@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoshe Aprillia Tsabita | Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        },
+                        accent: {
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    Y
+                </span>
+                <span class="font-bold text-lg tracking-tight">Yoshe <span class="text-brand-600 dark:text-brand-500">Aprillia</span></span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#tentang" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Tentang</a>
+                <a href="#keahlian" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Keahlian</a>
+                <a href="#portofolio" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Portofolio</a>
+                <a href="#playground" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Design Lab</a>
+                <a href="#kontak" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Kontak</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- Dark Mode Switcher -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors" title="Ubah Tema">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-2 pb-6 space-y-3">
+            <a href="#tentang" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Tentang</a>
+            <a href="#keahlian" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Keahlian</a>
+            <a href="#portofolio" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Portofolio</a>
+            <a href="#playground" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Design Lab</a>
+            <a href="#kontak" class="block py-2 px-3 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 font-medium">Kontak</a>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-16">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <!-- Background Decorative Blurs -->
+            <div class="absolute top-1/4 left-10 w-72 h-72 bg-brand-500/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-accent-500/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        Mahasiswi UPN "Veteran" Yogyakarta
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Halo, Saya <br class="hidden sm:inline">
+                        <span class="gradient-text">Yoshe Aprillia Tsabita</span>
+                    </h1>
+
+                    <p class="text-lg text-slate-6xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Pengembang Web & Desainer UI/UX yang berfokus menciptakan pengalaman digital interaktif, estetis, serta efisien. Memiliki ketertarikan mendalam pada pengembangan sistem performa tinggi dengan <span class="font-semibold text-brand-600 dark:text-brand-400">C/C++</span> dan arsitektur <span class="font-semibold text-accent-600 dark:text-accent-400">Web Modern</span>.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#portofolio" class="px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transform hover:-translate-y-0.5 transition-all">
+                            <i class="fa-solid fa-briefcase mr-2"></i> Lihat Karya
+                        </a>
+                        <a href="#kontak" class="px-6 py-3.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium transition-all">
+                            <i class="fa-solid fa-envelope mr-2"></i> Hubungi Saya
+                        </a>
+                    </div>
+
+                    <!-- Tech Badges -->
+                    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-center lg:justify-start gap-6 text-slate-500 dark:text-slate-400 text-sm">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-pen-nib text-brand-500"></i> UI/UX Design</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-code text-accent-500"></i> C / C++</span>
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-globe text-emerald-500"></i> Web Dev</span>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic / Avatar Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <!-- Decorative Frame -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-500 via-accent-500 to-pink-500 opacity-30 blur-lg group-hover:opacity-100 transition duration-1000"></div>
+                        
+                        <div class="relative rounded-3xl bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/60 p-6 shadow-2xl space-y-6">
+                            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700/50 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white text-xl font-bold shadow-md">
+                                        YT
+                                    </div>
+                                    <div>
+                                        <h2 class="font-bold text-slate-900 dark:text-white">Yoshe Aprillia T.</h2>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">UPN "Veteran" Yogyakarta</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
+                                    Aktif Belajar
+                                </span>
+                            </div>
+
+                            <!-- Interactive Live Code / Design Snapshot -->
+                            <div class="rounded-xl bg-slate-900 p-4 text-xs font-mono text-slate-300 space-y-2 shadow-inner">
+                                <div class="flex items-center justify-between text-slate-500 text-[10px] pb-1 border-b border-slate-800">
+                                    <span>profile.cpp</span>
+                                    <span>C++20</span>
+                                </div>
+                                <p><span class="text-purple-400">#include</span> <span class="text-emerald-400">&lt;iostream&gt;</span></p>
+                                <p><span class="text-blue-400">struct</span> <span class="text-yellow-300">Developer</span> {</p>
+                                <p class="pl-4"><span class="text-blue-300">std::string</span> name = <span class="text-emerald-300">"Yoshe"</span>;</p>
+                                <p class="pl-4"><span class="text-blue-300">std::string</span> campus = <span class="text-emerald-300">"UPN Jogja"</span>;</p>
+                                <p class="pl-4"><span class="text-blue-300">bool</span> lovesDesign = <span class="text-purple-400">true</span>;</p>
+                                <p>};</p>
+                            </div>
+
+                            <!-- Floating Skill Chips -->
+                            <div class="grid grid-cols-3 gap-2 text-center text-xs font-semibold">
+                                <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600/50">
+                                    <i class="fa-brands fa-figma text-pink-500 block text-base mb-1"></i> Figma
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600/50">
+                                    <i class="fa-solid fa-code text-blue-500 block text-base mb-1"></i> C / C++
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600/50">
+                                    <i class="fa-brands fa-html5 text-orange-500 block text-base mb-1"></i> Web Dev
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="tentang" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800/50 border-y border-slate-200/60 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Mengenal Lebih Dekat</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Tentang Saya</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1: Perguruan Tinggi -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">Pendidikan Kampus</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                            Saat ini menempuh pendidikan di <span class="font-semibold text-slate-800 dark:text-white">UPN "Veteran" Yogyakarta (UPN Jogja)</span>. Berfokus mempelajari dasar logika komputasi, struktur data, dan pengembangan perangkat lunak modern.
+                        </p>
+                        <span class="inline-block px-3 py-1 text-xs font-medium bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-300 rounded-lg">
+                            Yogyakarta, Indonesia
+                        </span>
+                    </div>
+
+                    <!-- Card 2: UI/UX Passion -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">UI/UX Design</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                            Tertarik merancang antarmuka pengguna yang ramah, intuitif, dan solutif. Mengombinasikan riset pengguna (User Research), wireframing, serta prototipe interaktif menggunakan Figma.
+                        </p>
+                        <span class="inline-block px-3 py-1 text-xs font-medium bg-pink-50 dark:bg-pink-900/30 text-pink-600 dark:text-pink-300 rounded-lg">
+                            User-Centered Design
+                        </span>
+                    </div>
+
+                    <!-- Card 3: Programming & Web -->
+                    <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-accent-100 dark:bg-accent-900/50 text-accent-600 dark:text-accent-400 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-laptop-code"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">C/C++ & Web Dev</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+                            Suka membangun fondasi algoritma yang kokoh melalui bahasa C dan C++, serta mengimplementasikannya ke dalam aplikasi web interaktif yang modern dan responsif.
+                        </p>
+                        <span class="inline-block px-3 py-1 text-xs font-medium bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-300 rounded-lg">
+                            Logical & Creative Coding
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="keahlian" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Kemampuan Utama</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Keahlian & Teknologi</h3>
+                    <p class="mt-4 text-slate-600 dark:text-slate-400 text-sm">
+                        Kombinasi kemampuan dalam desain visual antarmuka dan pemograman tingkat sistem serta web.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Category 1: UI/UX Design -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-800 p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-700/60 pb-4">
+                            <div class="w-10 h-10 rounded-lg bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-400 flex items-center justify-center">
+                                <i class="fa-solid fa-palette text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">UI / UX Design</h4>
+                        </div>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Wireframing & Prototyping</span>
+                                    <span class="text-brand-600 dark:text-brand-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-pink-500 h-full rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Figma / FigJam</span>
+                                    <span class="text-brand-600 dark:text-brand-400">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-pink-500 h-full rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>User Research & Persona</span>
+                                    <span class="text-brand-600 dark:text-brand-400">82%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-pink-500 h-full rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Design System & Components</span>
+                                    <span class="text-brand-600 dark:text-brand-400">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-pink-500 h-full rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Programming C/C++ -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-800 p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-700/60 pb-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                                <i class="fa-solid fa-code text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Pemrograman C / C++</h4>
+                        </div>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Struktur Data & Algoritma</span>
+                                    <span class="text-brand-600 dark:text-brand-400">85%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Object-Oriented Programming (OOP)</span>
+                                    <span class="text-brand-600 dark:text-brand-400">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Pointer & Memory Management</span>
+                                    <span class="text-brand-600 dark:text-brand-400">78%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Console & CLI Applications</span>
+                                    <span class="text-brand-600 dark:text-brand-400">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Web Development -->
+                    <div class="rounded-2xl bg-white dark:bg-slate-800 p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+                        <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-700/60 pb-4">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-globe text-lg"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Web Development</h4>
+                        </div>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>HTML5 & CSS3 / Tailwind CSS</span>
+                                    <span class="text-brand-600 dark:text-brand-400">90%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>JavaScript (ES6+)</span>
+                                    <span class="text-brand-600 dark:text-brand-400">82%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Responsive Web Design</span>
+                                    <span class="text-brand-600 dark:text-brand-400">88%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-medium mb-1">
+                                    <span>Git & GitHub Basics</span>
+                                    <span class="text-brand-600 dark:text-brand-400">80%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Projects Section -->
+        <section id="portofolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-800/40 border-t border-slate-200/60 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Showcase Produk & Proyek</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Portofolio Terpilih</h3>
+                    <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">
+                        Eksplorasi proyek perancangan UI/UX, program C/C++, dan pembuatan website yang pernah saya kerjakan.
+                    </p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mb-12">
+                    <button class="filter-btn active border px-4 py-2 rounded-xl text-sm font-medium transition-all bg-brand-600 text-white border-brand-600" data-filter="all">
+                        Semua Proyek
+                    </button>
+                    <button class="filter-btn border px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-brand-500" data-filter="uiux">
+                        UI/UX Design
+                    </button>
+                    <button class="filter-btn border px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-brand-500" data-filter="cpp">
+                        C / C++
+                    </button>
+                    <button class="filter-btn border px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-brand-500" data-filter="web">
+                        Web Dev
+                    </button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+                    
+                    <!-- Project 1: UI/UX App Campus -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="uiux">
+                        <div class="relative h-48 bg-gradient-to-tr from-brand-600 to-indigo-800 overflow-hidden flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <i class="fa-solid fa-mobile-screen-button text-5xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block font-mono text-xs opacity-80">UX Case Study</span>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-pink-500 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">UI/UX</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">UPN Mobile Event App</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Desain antarmuka aplikasi seluler untuk mempermudah mahasiswa UPN "Veteran" Yogyakarta menemukan, mendaftar, dan memantau kegiatan ormawa & seminar kampus.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Figma</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Wireframing</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">User Flow</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: C++ Algorithm System -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="cpp">
+                        <div class="relative h-48 bg-slate-900 overflow-hidden flex items-center justify-center p-6 text-emerald-400 font-mono">
+                            <div class="text-left text-xs space-y-1">
+                                <p class="text-slate-500">// C++ Student Management System</p>
+                                <p><span class="text-blue-400">void</span> <span class="text-yellow-300">sortStudents</span>() {</p>
+                                <p class="pl-4 text-slate-400">std::sort(data.begin()...);</p>
+                                <p>}</p>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">C / C++</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Sistem Manajemen Akademik C++</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Program berbasis konsol yang memanfaatkan Struktur Data Linked List dan algoritma pemrosesan berkas untuk mengelola data nilai & kehadiran mahasiswa.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">C++20</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Data Structures</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">CLI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Web Dev Portfolio -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="web">
+                        <div class="relative h-48 bg-gradient-to-tr from-accent-500 to-teal-600 overflow-hidden flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <i class="fa-solid fa-laptop-code text-5xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block font-mono text-xs opacity-80">Responsive Web App</span>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">Web Dev</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Personal Portfolio Website</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Website personal interaktif untuk memamerkan profil, proyek, dan kemampuan teknis dengan desain modern, tema gelap/terang, dan performa tinggi.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">HTML5</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Tailwind CSS</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Healthcare UI Redesign -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="uiux">
+                        <div class="relative h-48 bg-gradient-to-tr from-rose-500 to-orange-400 overflow-hidden flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <i class="fa-solid fa-heart-pulse text-5xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block font-mono text-xs opacity-80">Redesign Concept</span>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-pink-500 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">UI/UX</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Health & Patient Portal UI</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Konsep redesain dashboard reservasi dokter dan rekam medis pasien dengan aksesibilitas tinggi untuk pengguna lansia.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Design System</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Accessibility</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: C Pathfinding Simulation -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="cpp">
+                        <div class="relative h-48 bg-slate-900 overflow-hidden flex items-center justify-center p-6 text-yellow-400 font-mono">
+                            <div class="text-left text-xs space-y-1">
+                                <p class="text-slate-500">// Shortest Path Algorithm in C</p>
+                                <p><span class="text-purple-400">#define</span> MAX 100</p>
+                                <p><span class="text-blue-400">void</span> <span class="text-yellow-300">dijkstra</span>(<span class="text-blue-300">int</span> graph[MAX][MAX])</p>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">C / C++</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Simulasi Algoritma Rute Terpendek</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Implementasi Algoritma Dijkstra dalam Bahasa C murni untuk menghitung jalur transportasi tercepat dengan alokasi memori dinamis.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Bahasa C</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">Graph Theory</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Interactive Web Widget -->
+                    <div class="project-card rounded-2xl overflow-hidden bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 group" data-category="web">
+                        <div class="relative h-48 bg-gradient-to-tr from-purple-600 to-pink-500 overflow-hidden flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <i class="fa-solid fa-sliders text-5xl mb-2 group-hover:scale-110 transition-transform"></i>
+                                <span class="block font-mono text-xs opacity-80">Interactive UI Tools</span>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-emerald-500 text-white text-[10px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-full">Web Dev</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="font-bold text-lg group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">Component Style Customizer</h4>
+                            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-3">
+                                Alat interaktif berbasis JavaScript untuk menyesuaikan properti CSS tombol/komponen secara langsung (live visual builder).
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">JavaScript</span>
+                                <span class="px-2 py-0.5 text-[11px] font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded">CSS Variables</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive UI/UX Design Lab Section -->
+        <section id="playground" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-brand-950 p-8 sm:p-12 text-white border border-slate-700/50 shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-brand-500/20 border border-brand-500/40 text-brand-300 text-xs font-semibold tracking-wider uppercase">
+                                Mini Lab Interaktif
+                            </span>
+                            <h3 class="text-3xl font-extrabold tracking-tight">Uji Coba UI Widget Lab Yoshe</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Sebagai desainer UI/UX & Web Developer, saya percaya interaksi langsung adalah cara terbaik merasakan desain. Cobalah ubah opsi di bawah untuk melihat pembaruan gaya kartu secara instan!
+                            </p>
+
+                            <!-- Control Sliders & Switches -->
+                            <div class="space-y-4 pt-4 border-t border-slate-700/60 text-xs">
+                                <div>
+                                    <label class="block mb-1 text-slate-400 font-medium">Lengkung Sudut (Border Radius)</label>
+                                    <input type="range" id="radiusSlider" min="0" max="24" value="12" class="w-full accent-brand-500">
+                                </div>
+                                <div>
+                                    <label class="block mb-1 text-slate-400 font-medium">Warna Tema Akse (Accent Color)</label>
+                                    <div class="flex gap-3">
+                                        <button onclick="setLabColor('indigo')" class="w-8 h-8 rounded-full bg-indigo-600 border-2 border-white/50 focus:scale-110 transition-transform"></button>
+                                        <button onclick="setLabColor('emerald')" class="w-8 h-8 rounded-full bg-emerald-500 border-2 border-white/50 focus:scale-110 transition-transform"></button>
+                                        <button onclick="setLabColor('pink')" class="w-8 h-8 rounded-full bg-pink-500 border-2 border-white/50 focus:scale-110 transition-transform"></button>
+                                        <button onclick="setLabColor('amber')" class="w-8 h-8 rounded-full bg-amber-500 border-2 border-white/50 focus:scale-110 transition-transform"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preview Card -->
+                        <div class="lg:col-span-7 flex justify-center">
+                            <div id="demoCard" class="w-full max-w-sm bg-slate-800 border border-slate-700 p-6 space-y-4 shadow-xl transition-all duration-200">
+                                <div class="flex items-center justify-between">
+                                    <span id="demoBadge" class="px-2.5 py-1 text-[10px] font-bold uppercase rounded bg-indigo-600 text-white">UX Prototype</span>
+                                    <i class="fa-solid fa-heart text-slate-500 hover:text-red-500 cursor-pointer transition-colors"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-white">UPN Student Dashboard Card</h4>
+                                    <p class="text-slate-400 text-xs mt-1">Kartu komponen dinamis yang dirancang menggunakan prinsip kognitif UI modern.</p>
+                                </div>
+                                <div class="pt-2">
+                                    <button id="demoBtn" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs shadow-md transition-all active:scale-95">
+                                        Klik Uji Interaksi
+                                    </button>
+                                </div>
+                                <div id="demoFeedback" class="hidden text-center text-xs text-emerald-400 font-mono pt-1">
+                                    ✓ Event OnClick berhasil diproses!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="kontak" class="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-800/50 border-t border-slate-200/60 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <!-- Contact Info -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Terhubung Dengan Saya</h2>
+                            <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Mari Berkolaborasi!</h3>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Apakah Anda memiliki proyek UI/UX, kebutuhan pembuatan website, diskusi seputar C/C++, atau sekadar ingin menyapa? Silakan hubungi saya melalui formulir atau media sosial berikut.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                <div class="w-10 h-10 rounded-lg bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Institusi</p>
+                                    <p class="font-semibold text-sm">UPN "Veteran" Yogyakarta</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Email Utama</p>
+                                    <p class="font-semibold text-sm">yoshe.aprillia@student.upn.ac.id</p>
+                                </div>
+                                <button onclick="copyEmail()" class="p-2 text-slate-400 hover:text-brand-600" title="Salin Email">
+                                    <i class="fa-regular fa-copy"></i>
+                                </button>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                                <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">Lokasi</p>
+                                    <p class="font-semibold text-sm">Sleman, DI Yogyakarta, Indonesia</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Icons -->
+                        <div class="flex items-center gap-3 pt-2">
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-600 transition-colors">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-slate-900 hover:text-white transition-colors">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-pink-600 hover:text-white transition-colors">
+                                <i class="fa-brands fa-dribbble"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:bg-pink-500 hover:text-white transition-colors">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7">
+                        <form id="contactForm" class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/60 shadow-sm space-y-5">
+                            <h4 class="text-xl font-bold mb-4">Kirim Pesan Direct</h4>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Nama Lengkap</label>
+                                    <input type="text" required placeholder="Masukkan nama Anda" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-brand-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Email Anda</label>
+                                    <input type="email" required placeholder="nama@email.com" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-brand-500 text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Subjek / Topik</label>
+                                <input type="text" required placeholder="Proyek UI/UX, Web, atau Diskusi" class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-brand-500 text-sm">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-2">Pesan Anda</label>
+                                <textarea rows="4" required placeholder="Tuliskan detail pesan Anda di sini..." class="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-brand-500 text-sm resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-medium shadow-md shadow-brand-500/20 transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane text-sm"></i> Kirim Pesan Sekarang
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 Yoshe Aprillia Tsabita. All rights reserved.</p>
+            <p class="text-xs text-slate-500">
+                Dikembangkan dengan <i class="fa-solid fa-heart text-red-500"></i> | UPN "Veteran" Yogyakarta
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 hidden z-50 px-5 py-3.5 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-2xl flex items-center gap-3 text-sm">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMsg">Pesan berhasil dikirim!</span>
+    </div>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        // Default setup (Check system or dark preference)
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            htmlElement.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- Portfolio Filter Logic ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
+                    b.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-700');
+                });
+
+                btn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300', 'border-slate-200', 'dark:border-slate-700');
+                btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Interactive Design Lab Logic ---
+        const radiusSlider = document.getElementById('radiusSlider');
+        const demoCard = document.getElementById('demoCard');
+        const demoBadge = document.getElementById('demoBadge');
+        const demoBtn = document.getElementById('demoBtn');
+        const demoFeedback = document.getElementById('demoFeedback');
+
+        radiusSlider.addEventListener('input', (e) => {
+            demoCard.style.borderRadius = `${e.target.value}px`;
+            demoBtn.style.borderRadius = `${Math.max(4, e.target.value - 4)}px`;
+        });
+
+        function setLabColor(colorName) {
+            const colorMap = {
+                indigo: { bg: 'bg-indigo-600', hover: 'hover:bg-indigo-700' },
+                emerald: { bg: 'bg-emerald-500', hover: 'hover:bg-emerald-600' },
+                pink: { bg: 'bg-pink-500', hover: 'hover:bg-pink-600' },
+                amber: { bg: 'bg-amber-500', hover: 'hover:bg-amber-600' }
+            };
+
+            const selected = colorMap[colorName];
+            demoBadge.className = `px-2.5 py-1 text-[10px] font-bold uppercase rounded text-white ${selected.bg}`;
+            demoBtn.className = `w-full py-2.5 px-4 text-white font-medium text-xs shadow-md transition-all active:scale-95 ${selected.bg} ${selected.hover}`;
+        }
+
+        demoBtn.addEventListener('click', () => {
+            demoFeedback.classList.remove('hidden');
+            setTimeout(() => {
+                demoFeedback.classList.add('hidden');
+            }, 2500);
+        });
+
+        // --- Copy Email Helper ---
+        function copyEmail() {
+            const emailText = 'yoshe.aprillia@student.upn.ac.id';
+            
+            // Clipboard fallback logic
+            const tempInput = document.createElement('textarea');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('Alamat email berhasil disalin!');
+        }
+
+        // --- Contact Form Submission ---
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('Terima kasih! Pesan Anda telah terkirim.');
+            contactForm.reset();
+        });
+
+        // --- Toast Display Function ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
