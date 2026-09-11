@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio Yoshe Aprillia Tsabita, UI/UX designer dan web developer yang membangun pengalaman digital interaktif.">
+    <meta name="theme-color" content="#f8fafc">
     <title>Yoshe Aprillia Tsabita | Portfolio & Design Lab</title>
 
     <!-- Tailwind CSS -->
@@ -58,12 +60,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Pyodide WebAssembly Full Python Runtime -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        :focus-visible {
+            outline: 3px solid #38bdf8;
+            outline-offset: 3px;
+        }
+
+        .hero-surface {
+            background-image: linear-gradient(rgba(99, 102, 241, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.045) 1px, transparent 1px);
+            background-size: 32px 32px;
+            mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         /* Claymorphism Light Mode Styles */
@@ -150,6 +170,7 @@
         /* Gradient Text */
         .gradient-text {
             background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 50%, #ec4899 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -262,12 +283,12 @@
 
             <div class="flex items-center gap-3">
                 <!-- Dark Mode Switcher -->
-                <button id="themeToggle" class="w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center transition-transform hover:scale-105" title="Toggle Theme">
+                <button id="themeToggle" class="w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center transition-transform hover:scale-105" title="Ganti tema" aria-label="Ganti tema warna" aria-pressed="false">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
 
                 <!-- Mobile Navigation Menu Toggle -->
-                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center focus:outline-none">
+                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center focus:outline-none" title="Buka navigasi" aria-label="Buka navigasi" aria-controls="mobileMenu" aria-expanded="false">
                     <i class="fa-solid fa-bars text-lg"></i>
                 </button>
             </div>
@@ -284,34 +305,31 @@
     </header>
 
     <main class="flex-grow pt-16">
-        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <!-- Background Glow Blobs -->
-            <div class="absolute top-1/4 left-10 w-80 h-80 bg-brand-500/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-            <div class="absolute bottom-10 right-10 w-96 h-96 bg-accent-500/15 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden hero-surface">
 
             <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Hero Content -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full clay-btn-secondary text-brand-600 dark:text-brand-400 text-xs font-bold tracking-wide uppercase">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>UI/UX Enthusiast • Web Developer • C++ Specialist</span>
+                        <span>UI/UX Designer • Web Developer</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                        <span class="text-slate-900 dark:text-white">Hey there, I'm</span> <br>
-                        <span class="gradient-text">Yoshe Aprillia Tsabita</span>
+                        <span class="text-slate-900 dark:text-white">I design useful digital</span> <br>
+                        <span class="gradient-text">experiences that feel clear.</span>
                     </h1>
 
                     <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        Passionate about crafting intuitive, beautiful digital interfaces and exploring high-performance system programming in <span class="font-semibold text-brand-600 dark:text-brand-400">C/C++</span>, Web Assembly, and <span class="font-semibold text-accent-600 dark:text-accent-400">Modern Web Systems</span>.
+                        Saya merancang interface yang intuitif dan membangun web interaktif dengan perhatian pada detail, performa, dan pengalaman pengguna. Eksperimen C/C++ dan WebAssembly menjadi ruang eksplorasi teknis saya.
                     </p>
 
                     <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                         <a href="#portfolio" class="px-7 py-3.5 clay-btn text-white font-bold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-layer-group text-xs"></i> Explore Works
+                            <i class="fa-solid fa-layer-group text-xs"></i> Lihat karya
                         </a>
                         <a href="#contact" class="px-7 py-3.5 clay-btn-secondary text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center gap-2">
-                            <i class="fa-brands fa-github text-sm"></i> Connect / Socials
+                            <i class="fa-solid fa-arrow-right text-sm"></i> Mari terhubung
                         </a>
                     </div>
 
@@ -368,6 +386,9 @@
                         </div>
                     </div>
                 </div>
+                <p id="projectEmptyState" class="hidden text-center text-sm text-slate-500 dark:text-slate-400 py-10" role="status">
+                    Tidak ada proyek yang cocok. Coba kata kunci atau kategori lain.
+                </p>
             </div>
         </section>
 
@@ -531,7 +552,7 @@
 
                     <!-- Search Input -->
                     <div class="relative w-full sm:w-64">
-                        <input type="text" id="projectSearchInput" placeholder="Search projects..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs font-semibold">
+                        <input type="search" id="projectSearchInput" placeholder="Cari proyek..." aria-label="Cari proyek" class="w-full pl-9 pr-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs font-semibold">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
                     </div>
                 </div>
@@ -584,7 +605,7 @@
                                 <i class="fa-solid fa-laptop-code text-2xl text-emerald-500"></i>
                             </div>
                             <h4 class="text-xl font-bold text-slate-900 dark:text-white">Portfolio & WASM Design Lab</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Interactive portfolio incorporating Claymorphism design, Dracula C++20 WASM Shell, and MicroPython REPL.</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Interactive portfolio dengan claymorphism, syntax highlighting Dracula, Python REPL via Pyodide, dan demo algoritma.</p>
                         </div>
                         <div class="p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 mt-4">
                             <div class="flex flex-wrap gap-2 text-[11px] font-mono font-semibold text-slate-500">
@@ -604,7 +625,7 @@
                     <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Interactive Experiments</h2>
                     <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Design & Code Lab</h3>
                     <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">
-                        Test live color palettes, visualize sorting algorithms, or compile C++ in Dracula Theme and execute MicroPython REPL in your browser!
+                        Eksperimen kecil untuk menguji warna, memvisualisasikan algoritma, dan menjalankan kode langsung di browser.
                     </p>
                 </div>
 
@@ -670,21 +691,21 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
                             <div>
                                 <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                                    <i class="fa-brands fa-python text-2xl text-amber-400"></i> MicroPython WebAssembly REPL Terminal
+                                    <i class="fa-brands fa-python text-2xl text-amber-400"></i> Python REPL Terminal
                                 </h4>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                    Live Python terminal powered by WebAssembly (Emscripten)!
+                                    Jalankan ekspresi Python langsung di browser dengan runtime Pyodide.
                                 </p>
                             </div>
                             <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-800 flex items-center gap-1.5">
                                 <i class="fa-solid fa-terminal text-amber-500"></i>
-                                <span>MicroPython v1.28 WebAssembly</span>
+                                <span>Python REPL via Pyodide</span>
                             </span>
                         </div>
 
                         <!-- REPL Screen with Dedicated Scrollbar -->
-                        <div class="rounded-2xl bg-slate-950 p-4 sm:p-6 font-mono text-xs sm:text-sm text-slate-200 border border-slate-800 shadow-2xl space-y-2 custom-scrollbar overflow-y-auto h-[300px]" id="replTerminalWindow">
-                            <div class="text-slate-400 font-mono" id="pythonVersionBanner">MicroPython v1.28.0 (Pyodide CPython 3.11 WASM Engine)</div>
+                        <div class="rounded-2xl bg-slate-950 p-4 sm:p-6 font-mono text-xs sm:text-sm text-slate-200 border border-slate-800 shadow-2xl space-y-2 custom-scrollbar overflow-y-auto h-[300px]" id="replTerminalWindow" role="log" aria-live="polite">
+                            <div class="text-slate-400 font-mono" id="pythonVersionBanner">Pyodide Python runtime sedang disiapkan...</div>
                             <div class="text-slate-400 font-mono mb-3">Type "help()" for more information.</div>
                             <div id="replOutputHistory" class="space-y-1"></div>
                             
@@ -701,15 +722,15 @@
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
                             <div>
                                 <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                                    <i class="fa-solid fa-code text-2xl text-[#ff79c6]"></i> C++ WASM Interactive Shell & Compiler
+                                    <i class="fa-solid fa-code text-2xl text-[#ff79c6]"></i> C++ Code Output Demo
                                 </h4>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                    Write, compile, and execute C++20 code live with <span class="text-[#bd93f9] font-bold">VS Code Dracula Theme</span> syntax highlighting!
+                                    Tulis kode C++20 dan lihat simulasi output dengan syntax highlighting <span class="text-[#bd93f9] font-bold">Dracula Theme</span>.
                                 </p>
                             </div>
                             <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-purple-950/80 text-purple-300 border border-purple-800 flex items-center gap-1.5 shadow-sm">
                                 <i class="fa-solid fa-wand-magic-sparkles text-[#ff79c6]"></i>
-                                <span>Dracula Theme • ISO C++20</span>
+                                <span>Demo output • C++20</span>
                             </span>
                         </div>
 
@@ -864,11 +885,24 @@
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
 
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+        document.documentElement.classList.toggle('dark', initialDark);
+
         if (themeToggleBtn && themeIcon) {
+            const updateThemeControl = (isDark) => {
+                themeIcon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-700';
+                themeToggleBtn.setAttribute('aria-pressed', String(isDark));
+                themeToggleBtn.setAttribute('aria-label', isDark ? 'Gunakan tema terang' : 'Gunakan tema gelap');
+            };
+
+            updateThemeControl(initialDark);
             themeToggleBtn.addEventListener('click', () => {
                 document.documentElement.classList.toggle('dark');
                 const isDark = document.documentElement.classList.contains('dark');
-                themeIcon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-700';
+                localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+                updateThemeControl(isDark);
                 showToast(isDark ? 'Dark Theme Activated' : 'Light Theme Activated', isDark ? 'fa-sun' : 'fa-moon');
             });
         }
@@ -880,35 +914,50 @@
 
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                const isOpen = mobileMenu.classList.toggle('hidden') === false;
+                mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
+                mobileMenuBtn.querySelector('i').className = isOpen ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
             });
 
             mobileLinks.forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.setAttribute('aria-label', 'Buka navigasi');
+                    mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars text-lg';
+                });
             });
         }
 
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
         const projectSearchInput = document.getElementById('projectSearchInput');
+        const projectEmptyState = document.getElementById('projectEmptyState');
 
         const filterProjects = () => {
             const activeBtn = document.querySelector('.filter-btn.clay-btn');
             const category = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
             const query = projectSearchInput ? projectSearchInput.value.toLowerCase().trim() : '';
 
+            let visibleProjects = 0;
             projectCards.forEach(card => {
                 const cardCat = card.getAttribute('data-category');
-                const cardTitle = card.getAttribute('data-title').toLowerCase();
+                const cardText = `${card.getAttribute('data-title')} ${card.textContent}`.toLowerCase();
                 const matchesCat = (category === 'all' || cardCat === category);
-                const matchesQuery = cardTitle.includes(query);
+                const matchesQuery = cardText.includes(query);
 
                 if (matchesCat && matchesQuery) {
                     card.style.display = 'flex';
+                    visibleProjects++;
                 } else {
                     card.style.display = 'none';
                 }
             });
+
+            if (projectEmptyState) {
+                projectEmptyState.classList.toggle('hidden', visibleProjects > 0);
+            }
         };
 
         filterBtns.forEach(btn => {
@@ -942,13 +991,27 @@
                     const card = document.createElement('div');
                     card.className = 'p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1 cursor-pointer';
                     card.style.backgroundColor = hex;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('tabindex', '0');
+                    card.setAttribute('aria-label', `Salin warna ${hex}`);
                     card.innerHTML = `
                         <span class="bg-black/20 px-2 py-1 rounded-lg w-max">${hex}</span>
                         <span>${labels[i]}</span>
                     `;
-                    card.addEventListener('click', () => {
-                        document.execCommand('copy');
-                        showToast(`Copied ${hex} to clipboard!`, 'fa-copy');
+                    const copyColor = async () => {
+                        try {
+                            await navigator.clipboard.writeText(hex);
+                            showToast(`Copied ${hex} to clipboard!`, 'fa-copy');
+                        } catch (error) {
+                            showToast('Clipboard tidak tersedia di browser ini.', 'fa-triangle-exclamation');
+                        }
+                    };
+                    card.addEventListener('click', copyColor);
+                    card.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            copyColor();
+                        }
                     });
                     paletteContainer.appendChild(card);
                 }
@@ -1021,6 +1084,7 @@
             const replInputLine = document.getElementById('replInputLine');
             const replOutputHistory = document.getElementById('replOutputHistory');
             const replTerminalWindow = document.getElementById('replTerminalWindow');
+            const pythonVersionBanner = document.getElementById('pythonVersionBanner');
 
             if (!replInputLine || !replOutputHistory) return;
 
@@ -1028,37 +1092,54 @@
             const cmdHistory = [];
             let historyIdx = -1;
 
-            // Load Pyodide CPython Engine asynchronously
+            const loadPyodideScript = () => new Promise((resolve, reject) => {
+                if (window.loadPyodide) {
+                    resolve();
+                    return;
+                }
+
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js';
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+
             async function loadPythonWASM() {
                 try {
-                    if (window.loadPyodide) {
-                        pyodideInstance = await loadPyodide();
-                        
-                        // Set custom stdout to capture standard print(...) calls
-                        pyodideInstance.setStdout({
-                            batched: (text) => {
-                                appendOutputLine(text, 'text-slate-200');
-                            }
-                        });
+                    await loadPyodideScript();
+                    pyodideInstance = await loadPyodide();
 
-                        pyodideInstance.setStderr({
-                            batched: (text) => {
-                                appendOutputLine(text, 'text-rose-400');
-                            }
-                        });
+                    pyodideInstance.setStdout({
+                        batched: (text) => appendOutputLine(text, 'text-slate-200')
+                    });
 
-                        replInputLine.disabled = false;
-                        replInputLine.focus();
-                    } else {
-                        throw new Error('Pyodide script tag not loaded.');
-                    }
+                    pyodideInstance.setStderr({
+                        batched: (text) => appendOutputLine(text, 'text-rose-400')
+                    });
+
+                    if (pythonVersionBanner) pythonVersionBanner.textContent = 'Python 3.11 via Pyodide siap digunakan.';
+                    replInputLine.disabled = false;
+                    replInputLine.focus();
                 } catch (err) {
-                    console.warn('Pyodide WASM load warning, using lightweight fallback interpreter:', err);
+                    console.warn('Pyodide gagal dimuat, fallback interpreter digunakan:', err);
+                    if (pythonVersionBanner) pythonVersionBanner.textContent = 'Mode offline aktif: ekspresi dasar JavaScript tersedia.';
                     replInputLine.disabled = false;
                 }
             }
 
-            loadPythonWASM();
+            const playgroundSection = document.getElementById('playground');
+            if ('IntersectionObserver' in window && playgroundSection) {
+                const observer = new IntersectionObserver((entries, currentObserver) => {
+                    if (entries.some(entry => entry.isIntersecting)) {
+                        loadPythonWASM();
+                        currentObserver.disconnect();
+                    }
+                }, { rootMargin: '240px' });
+                observer.observe(playgroundSection);
+            } else {
+                loadPythonWASM();
+            }
 
             function appendOutputLine(text, colorClass = 'text-slate-300') {
                 const outEl = document.createElement('div');
@@ -1115,7 +1196,7 @@
                 }
 
                 if (trimmed === 'help()' || trimmed === 'help') {
-                    appendOutputLine('Welcome to Python 3 / MicroPython WebAssembly REPL!');
+                    appendOutputLine('Welcome to the Python 3 REPL powered by Pyodide!');
                     appendOutputLine('- Try math operations: import math as m; m.pi');
                     appendOutputLine('- Try modules: import this, import sys, import random');
                     appendOutputLine('- Clear console: clear()');
