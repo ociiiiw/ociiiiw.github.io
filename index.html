@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Yoshe Aprillia Tsabita, UI/UX designer dan web developer yang membangun pengalaman digital interaktif.">
-    <meta name="theme-color" content="#f8fafc">
-    <title>Yoshe Aprillia Tsabita | Portfolio & Design Lab</title>
-
+    <title>Yoshe Aprillia | Portfolio & Lab</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,32 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f5ff',
-                            100: '#e0ebff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            900: '#312e81',
-                        },
-                        accent: {
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                        },
-                        dracula: {
-                            bg: '#282a36',
-                            current: '#44475a',
-                            fg: '#f8f8f2',
-                            comment: '#6272a4',
-                            cyan: '#8be9fd',
-                            green: '#50fa7b',
-                            orange: '#ffb86c',
-                            pink: '#ff79c6',
-                            purple: '#bd93f9',
-                            red: '#ff5555',
-                            yellow: '#f1fa8c'
-                        }
+                        brand: { 50: '#f0f5ff', 100: '#e0ebff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' },
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -50,1429 +23,464 @@
             }
         }
     </script>
-
-    <!-- Google Fonts -->
+    
+    <!-- Google Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Pyodide WebAssembly Full Python Runtime -->
+    <!-- Pyodide CPython WebAssembly Engine -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        :focus-visible {
-            outline: 3px solid #38bdf8;
-            outline-offset: 3px;
-        }
-
-        .hero-surface {
-            background-image: linear-gradient(rgba(99, 102, 241, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.045) 1px, transparent 1px);
-            background-size: 32px 32px;
-            mask-image: linear-gradient(to bottom, black 0%, transparent 88%);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Claymorphism Light Mode Styles */
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Claymorphism Styling */
         .clay-card {
-            background: #ffffff;
-            border-radius: 1.5rem;
-            box-shadow: 12px 12px 24px #e2e8f0, -12px -12px 24px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 24px;
+            box-shadow: 8px 8px 16px rgba(165, 177, 198, 0.4), -8px -8px 16px rgba(255, 255, 255, 0.8), inset 2px 2px 4px rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
-
-        .clay-card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 16px 16px 32px #cbd5e1, -16px -16px 32px #ffffff;
-        }
-
-        .clay-btn {
-            background: linear-gradient(145deg, #6366f1, #4f46e5);
-            box-shadow: 5px 5px 12px #cbd5e1, -5px -5px 12px #ffffff;
-            border-radius: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .clay-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 7px 7px 16px #cbd5e1, -7px -7px 16px #ffffff;
-        }
-
-        .clay-btn:active {
-            transform: translateY(1px);
-            box-shadow: inset 3px 3px 6px #3730a3, inset -3px -3px 6px #6366f1;
-        }
-
-        .clay-btn-secondary {
-            background: #f1f5f9;
-            box-shadow: 6px 6px 14px #cbd5e1, -6px -6px 14px #ffffff;
-            border-radius: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .clay-btn-secondary:hover {
-            background: #e2e8f0;
-            transform: translateY(-2px);
-        }
-
-        /* Dark Mode Overrides for Claymorphism */
         .dark .clay-card {
-            background: #1e293b;
-            box-shadow: 10px 10px 24px #090d16, -10px -10px 24px #29374d;
+            background: rgba(30, 41, 59, 0.85);
+            box-shadow: 8px 8px 20px rgba(15, 23, 42, 0.8), -6px -6px 16px rgba(51, 65, 85, 0.3), inset 1px 1px 2px rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .dark .clay-card-hover:hover {
-            box-shadow: 14px 14px 28px #05070c, -14px -14px 28px #2d3d56;
+        .clay-btn {
+            border-radius: 16px;
+            box-shadow: 4px 4px 10px rgba(99, 102, 241, 0.3), -3px -3px 8px rgba(255, 255, 255, 0.9), inset 1px 1px 2px rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+        .clay-btn:active {
+            box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+            transform: translateY(1px);
         }
 
-        .dark .clay-btn {
-            background: linear-gradient(145deg, #6366f1, #4338ca);
-            box-shadow: 5px 5px 15px #0a0f1d, -5px -5px 15px #24314c;
-        }
-
-        .dark .clay-btn-secondary {
-            background: #0f172a;
-            box-shadow: 5px 5px 12px #070a12, -5px -5px 12px #212e44;
-        }
-
-        .dark .clay-btn-secondary:hover {
-            background: #1a253b;
-        }
-
-        /* Glass Navbar */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        .dark .glass-nav {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1 0%, #0ea5e9 50%, #ec4899 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Custom Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #6366f1;
-            border-radius: 9999px;
-        }
-
-        /* Dracula Dual-Layer Code Editor Styling */
-        .dracula-editor-container {
-            position: relative;
-            background-color: #282a36;
-            border-radius: 1.25rem;
-            border: 1px solid #44475a;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-        }
-
-        .editor-code-layer {
-            margin: 0;
-            padding: 1rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            tab-size: 4;
-            white-space: pre;
-            word-wrap: normal;
-        }
-
-        #cppCodeInput {
-            position: absolute;
-            top: 0;
-            left: 3.2rem;
-            width: calc(100% - 3.2rem);
-            height: 100%;
-            color: transparent;
-            caret-color: #f8f8f2;
-            background: transparent;
-            resize: none;
-            outline: none;
-            border: none;
-            z-index: 2;
-            overflow: auto;
-        }
-
-        #cppCodeHighlight {
-            position: absolute;
-            top: 0;
-            left: 3.2rem;
-            width: calc(100% - 3.2rem);
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            color: #f8f8f2;
-            overflow: hidden;
-        }
-
-        #cppLineNumbers {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3.2rem;
-            height: 100%;
-            background-color: #21222c;
-            border-right: 1px solid #44475a;
-            color: #6272a4;
-            text-align: right;
-            padding: 1rem 0.5rem 1rem 0;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            user-select: none;
-            pointer-events: none;
-            z-index: 3;
-            overflow: hidden;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 9999px; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col custom-scrollbar">
+<body id="bodyElement" class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col custom-scrollbar overflow-hidden">
 
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200/60 dark:border-slate-800/60 transition-all duration-300">
+    <!-- Global Loading Screen -->
+    <div id="globalLoader" class="fixed inset-0 z-[100] bg-slate-100 dark:bg-slate-900 flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative flex items-center justify-center">
+            <!-- Pulsing Animation Elements -->
+            <div class="absolute w-24 h-24 rounded-full bg-brand-500/20 animate-ping"></div>
+            <div class="absolute w-16 h-16 rounded-full bg-brand-500/40 animate-pulse"></div>
+            <!-- Logo Center -->
+            <div class="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center font-extrabold shadow-lg z-10 text-2xl relative">Y</div>
+        </div>
+        <h2 class="mt-8 text-lg font-bold text-slate-800 dark:text-slate-200 tracking-wide">Yoshe Aprillia</h2>
+        <p id="loadingText" class="mt-2 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2 font-mono">
+            <i class="fa-solid fa-circle-notch fa-spin text-brand-500"></i> Memuat Python Engine...
+        </p>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <a href="#hero" class="flex items-center gap-2.5 group">
-                <span class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 via-brand-500 to-accent-500 flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
-                    Y
-                </span>
-                <div class="flex flex-col">
-                    <span class="font-extrabold text-base tracking-tight leading-none">Yoshe <span class="text-brand-600 dark:text-brand-400">Aprillia</span></span>
-                    <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Design Lab</span>
-                </div>
+            <a href="#hero" class="flex items-center gap-2.5 font-bold text-lg tracking-tight z-50">
+                <span class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center font-extrabold shadow-md">Y</span>
+                <span>Yoshe <span class="text-brand-600 dark:text-brand-400">Aprillia</span></span>
             </a>
 
-            <!-- Desktop Navigation -->
+            <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-7 text-sm font-semibold">
                 <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
                 <a href="#skills" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Skills</a>
                 <a href="#portfolio" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Portfolio</a>
-                <a href="#playground" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Design Lab</a>
-                <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Connect</a>
+                <a href="#lab" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Python Lab</a>
             </nav>
 
-            <div class="flex items-center gap-3">
-                <!-- Dark Mode Switcher -->
-                <button id="themeToggle" class="w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center transition-transform hover:scale-105" title="Ganti tema" aria-label="Ganti tema warna" aria-pressed="false">
+            <div class="flex items-center gap-3 z-50">
+                <!-- Theme Toggle -->
+                <button id="themeToggle" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-2xl clay-card flex items-center justify-center text-slate-700 dark:text-slate-300">
                     <i id="themeIcon" class="fa-solid fa-moon"></i>
                 </button>
-
-                <!-- Mobile Navigation Menu Toggle -->
-                <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-2xl clay-btn-secondary text-slate-700 dark:text-slate-300 flex items-center justify-center focus:outline-none" title="Buka navigasi" aria-label="Buka navigasi" aria-controls="mobileMenu" aria-expanded="false">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu" class="md:hidden w-10 h-10 rounded-2xl clay-card flex items-center justify-center text-slate-700 dark:text-slate-300">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Drawer Navigation -->
-        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-3 pb-6 space-y-2">
-            <a href="#about" class="mobile-link block py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm">About</a>
-            <a href="#skills" class="mobile-link block py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm">Skills</a>
-            <a href="#portfolio" class="mobile-link block py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm">Portfolio</a>
-            <a href="#playground" class="mobile-link block py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm">Design Lab</a>
-            <a href="#contact" class="mobile-link block py-2.5 px-4 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 font-medium text-sm">Connect</a>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="md:hidden hidden absolute top-16 left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg flex-col px-4 py-4 space-y-4 font-semibold text-center z-40">
+            <a href="#about" class="mobile-nav-link block text-slate-700 dark:text-slate-300 hover:text-brand-600">About</a>
+            <a href="#skills" class="mobile-nav-link block text-slate-700 dark:text-slate-300 hover:text-brand-600">Skills</a>
+            <a href="#portfolio" class="mobile-nav-link block text-slate-700 dark:text-slate-300 hover:text-brand-600">Portfolio</a>
+            <a href="#lab" class="mobile-nav-link block text-slate-700 dark:text-slate-300 hover:text-brand-600">Python Lab</a>
         </div>
     </header>
 
-    <main class="flex-grow pt-16">
-        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 overflow-hidden hero-surface">
-
-            <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Hero Content -->
+    <main class="flex-grow pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full clay-btn-secondary text-brand-600 dark:text-brand-400 text-xs font-bold tracking-wide uppercase">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>UI/UX Designer • Web Developer</span>
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-card text-brand-600 dark:text-brand-400 text-xs font-bold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        UI/UX Enthusiast • Web Developer • C++ Specialist
                     </div>
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
-                        <span class="text-slate-900 dark:text-white">I design useful digital</span> <br>
-                        <span class="gradient-text">experiences that feel clear.</span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
+                        Hey there, <br>
+                        <span class="text-brand-600 dark:text-brand-400">I'm Yoshe</span>
                     </h1>
 
-                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-                        Saya merancang interface yang intuitif dan membangun web interaktif dengan perhatian pada detail, performa, dan pengalaman pengguna. Eksperimen C/C++ dan WebAssembly menjadi ruang eksplorasi teknis saya.
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+                        Passionate about crafting minimalist digital experiences, sleek user interfaces, high-performance logic with <span class="font-semibold text-brand-600 dark:text-brand-400">C/C++</span>, and interactive web tools.
                     </p>
 
                     <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#portfolio" class="px-7 py-3.5 clay-btn text-white font-bold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-layer-group text-xs"></i> Lihat karya
+                        <a href="#portfolio" class="px-6 py-3.5 rounded-2xl bg-brand-600 text-white font-semibold text-sm clay-btn hover:bg-brand-700">
+                            Explore Works
                         </a>
-                        <a href="#contact" class="px-7 py-3.5 clay-btn-secondary text-slate-700 dark:text-slate-200 font-bold text-sm flex items-center gap-2">
-                            <i class="fa-solid fa-arrow-right text-sm"></i> Mari terhubung
+                        <a href="https://github.com/ociiiiw" target="_blank" class="px-6 py-3.5 rounded-2xl clay-card text-slate-800 dark:text-slate-200 font-semibold text-sm flex items-center gap-2">
+                            <i class="fa-brands fa-github text-lg"></i> GitHub
                         </a>
-                    </div>
-
-                    <div class="pt-6 border-t border-slate-200/80 dark:border-slate-800 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-semibold">
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-pen-nib text-brand-500"></i> UI/UX Design</span>
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-code text-accent-500"></i> C / C++20</span>
-                        <span class="flex items-center gap-2"><i class="fa-solid fa-laptop-code text-emerald-500"></i> Web Systems</span>
                     </div>
                 </div>
 
-                <!-- Hero Interactive Visual Card -->
-                <div class="lg:col-span-5 flex justify-center">
-                    <div class="w-full max-w-md clay-card p-6 sm:p-8 space-y-6 clay-card-hover">
-                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700/60 pb-4">
+                <!-- Clay Graphic Container -->
+                <div class="lg:col-span-5 flex justify-center mt-10 lg:mt-0">
+                    <div class="w-full max-w-md p-6 clay-card space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-700/50 pb-3">
                             <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white text-xl font-bold shadow-md shadow-brand-500/20">
-                                    YT
-                                </div>
-                                <div>
-                                    <h2 class="font-bold text-slate-900 dark:text-white text-base">Yoshe Aprillia T.</h2>
-                                    <p class="text-xs text-slate-500 dark:text-slate-400">Software & Design Innovator</p>
+                                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold">YT</div>
+                                <div class="text-left">
+                                    <h2 class="font-bold text-sm">Yoshe Aprillia</h2>
+                                    <p class="text-xs text-slate-500">Software & Design Enthusiast</p>
                                 </div>
                             </div>
-                            <span class="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
-                                Active
-                            </span>
+                            <span class="px-2.5 py-1 text-[10px] font-bold rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 hidden sm:inline-block">Ready to Code</span>
                         </div>
-
-                        <!-- C++ Code Sandbox Card (Dracula Styled) -->
-                        <div class="rounded-2xl bg-[#282a36] p-4 font-mono text-xs text-[#f8f8f2] space-y-2 shadow-inner border border-[#44475a]">
-                            <div class="flex items-center justify-between text-[#6272a4] text-[10px] pb-2 border-b border-[#44475a]">
-                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-file-code text-[#8be9fd]"></i> main.cpp</span>
-                                <span class="text-[#ff79c6] font-bold">Dracula C++20</span>
-                            </div>
-                            <p><span class="text-[#ff79c6]">#include</span> <span class="text-[#f1fa8c]">&lt;iostream&gt;</span></p>
-                            <p><span class="text-[#ff79c6]">struct</span> <span class="text-[#f1fa8c] font-bold">Developer</span> {</p>
-                            <p class="pl-4"><span class="text-[#ffb86c]">std::string</span> name = <span class="text-[#50fa7b]">"Yoshe"</span>;</p>
-                            <p class="pl-4"><span class="text-[#ffb86c]">std::string</span> focus = <span class="text-[#50fa7b]">"UI/UX & Systems"</span>;</p>
-                            <p class="pl-4"><span class="text-[#ff79c6]">bool</span> lovesCoding = <span class="text-[#bd93f9]">true</span>;</p>
-                            <p>};</p>
-                        </div>
-
-                        <!-- Feature Badges -->
-                        <div class="grid grid-cols-3 gap-3 text-center text-xs font-bold">
-                            <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700">
-                                <i class="fa-brands fa-figma text-pink-500 block text-xl mb-1"></i> Figma
-                            </div>
-                            <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700">
-                                <i class="fa-solid fa-code text-blue-500 block text-xl mb-1"></i> C / C++
-                            </div>
-                            <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700">
-                                <i class="fa-brands fa-html5 text-orange-500 block text-xl mb-1"></i> Web Dev
-                            </div>
+                        <div class="p-4 rounded-xl bg-slate-900 font-mono text-xs text-slate-300 space-y-1 text-left overflow-x-auto">
+                            <p class="text-purple-400">#include &lt;iostream&gt;</p>
+                            <p><span class="text-blue-400">int</span> <span class="text-yellow-300">main</span>() {</p>
+                            <p class="pl-4 text-emerald-400">std::cout &lt;&lt; "Hello World!" &lt;&lt; std::endl;</p>
+                            <p class="pl-4 text-purple-400">return 0;</p>
+                            <p>}</p>
                         </div>
                     </div>
                 </div>
-                <p id="projectEmptyState" class="hidden text-center text-sm text-slate-500 dark:text-slate-400 py-10" role="status">
-                    Tidak ada proyek yang cocok. Coba kata kunci atau kategori lain.
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-1">Get to know me</h2>
+                <h3 class="text-3xl font-extrabold">About Me</h3>
+            </div>
+            <div class="clay-card p-8 md:p-12 text-center text-slate-700 dark:text-slate-300 leading-relaxed max-w-4xl mx-auto text-sm sm:text-base">
+                <p class="mb-4">
+                    Hello! I'm a software developer who loves bridging the gap between high-performance logic and beautiful, user-centric designs. My journey started with a deep curiosity about how software works under the hood, leading me to master <span class="font-bold text-brand-600 dark:text-brand-400">C and C++</span>.
+                </p>
+                <p>
+                    Today, I combine my backend expertise with modern frontend technologies and <span class="font-bold text-brand-600 dark:text-brand-400">UI/UX principles</span> to build comprehensive, interactive, and efficient digital experiences. Whether it's optimizing algorithms or perfecting pixel-perfect layouts, I enjoy every step of the creative process.
                 </p>
             </div>
         </section>
 
-        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 border-y border-slate-200/60 dark:border-slate-800">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Get to Know Me</h2>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">About & Specializations</h3>
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-1">My Expertise</h2>
+                <h3 class="text-3xl font-extrabold">Skills & Technologies</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="clay-card p-6 flex flex-col items-center justify-center text-center gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                        <i class="fa-solid fa-code text-3xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100">C / C++</h4>
+                        <p class="text-xs text-slate-500 mt-1">Algorithms, STL, OOP</p>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- About Card 1 -->
-                    <div class="clay-card p-8 clay-card-hover flex flex-col justify-between">
-                        <div>
-                            <div class="w-14 h-14 rounded-2xl bg-brand-100 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center text-2xl mb-6 shadow-md">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Academic Journey</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                                Focused on computer science fundamentals, algorithm efficiency, memory management, and modern software architecture.
-                            </p>
-                        </div>
-                        <span class="inline-block px-3.5 py-1.5 text-xs font-bold bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-300 rounded-xl w-max">
-                            Computer Science
-                        </span>
+                <!-- Skill 2 -->
+                <div class="clay-card p-6 flex flex-col items-center justify-center text-center gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
+                        <i class="fa-brands fa-python text-3xl"></i>
                     </div>
-
-                    <!-- About Card 2 -->
-                    <div class="clay-card p-8 clay-card-hover flex flex-col justify-between">
-                        <div>
-                            <div class="w-14 h-14 rounded-2xl bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-400 flex items-center justify-center text-2xl mb-6 shadow-md">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">UI / UX Design</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                                Designing human-centered digital experiences using user research, wireframing, high-fidelity prototypes, and design systems in Figma.
-                            </p>
-                        </div>
-                        <span class="inline-block px-3.5 py-1.5 text-xs font-bold bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-300 rounded-xl w-max">
-                            User-Centered Design
-                        </span>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100">Python</h4>
+                        <p class="text-xs text-slate-500 mt-1">Data, Scripting, Pyodide</p>
                     </div>
+                </div>
 
-                    <!-- About Card 3 -->
-                    <div class="clay-card p-8 clay-card-hover flex flex-col justify-between">
-                        <div>
-                            <div class="w-14 h-14 rounded-2xl bg-accent-100 dark:bg-accent-950/60 text-accent-600 dark:text-accent-400 flex items-center justify-center text-2xl mb-6 shadow-md">
-                                <i class="fa-solid fa-laptop-code"></i>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">C/C++ & Web Dev</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                                Combining low-level algorithmic power in C/C++ with responsive front-end web engineering for seamless user experiences.
-                            </p>
-                        </div>
-                        <span class="inline-block px-3.5 py-1.5 text-xs font-bold bg-accent-50 dark:bg-accent-950 text-accent-600 dark:text-accent-300 rounded-xl w-max">
-                            Creative Systems
-                        </span>
+                <!-- Skill 3 -->
+                <div class="clay-card p-6 flex flex-col items-center justify-center text-center gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                        <i class="fa-brands fa-html5 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100">Web Frontend</h4>
+                        <p class="text-xs text-slate-500 mt-1">HTML, CSS, JS, Tailwind</p>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="clay-card p-6 flex flex-col items-center justify-center text-center gap-4 hover:-translate-y-1 transition-transform">
+                    <div class="w-16 h-16 rounded-full bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-pink-600 dark:text-pink-400">
+                        <i class="fa-solid fa-pen-nib text-3xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 dark:text-slate-100">UI/UX Design</h4>
+                        <p class="text-xs text-slate-500 mt-1">Figma, Wireframing</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Core Competencies</h2>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Skills & Technologies</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Skill 1 -->
-                    <div class="clay-card p-6 space-y-6">
-                        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700/60 pb-4">
-                            <div class="w-10 h-10 rounded-xl bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-400 flex items-center justify-center">
-                                <i class="fa-solid fa-palette text-lg"></i>
-                            </div>
-                            <h4 class="font-bold text-lg">UI / UX Design</h4>
-                        </div>
-                        <div class="space-y-4 text-sm font-semibold">
-                            <div>
-                                <div class="flex justify-between mb-1"><span>Prototyping & Wireframing</span><span class="text-brand-600 dark:text-brand-400">92%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-pink-500 h-full rounded-full" style="width: 92%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>Figma & Design Systems</span><span class="text-brand-600 dark:text-brand-400">90%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-pink-500 h-full rounded-full" style="width: 90%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>User Research & Usability</span><span class="text-brand-600 dark:text-brand-400">85%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-pink-500 h-full rounded-full" style="width: 85%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skill 2 -->
-                    <div class="clay-card p-6 space-y-6">
-                        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700/60 pb-4">
-                            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                                <i class="fa-solid fa-code text-lg"></i>
-                            </div>
-                            <h4 class="font-bold text-lg">C / C++ Programming</h4>
-                        </div>
-                        <div class="space-y-4 text-sm font-semibold">
-                            <div>
-                                <div class="flex justify-between mb-1"><span>Data Structures & Algorithms</span><span class="text-brand-600 dark:text-brand-400">88%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full rounded-full" style="width: 88%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>Object-Oriented C++20</span><span class="text-brand-600 dark:text-brand-400">85%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full rounded-full" style="width: 85%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>Pointers & Memory Control</span><span class="text-brand-600 dark:text-brand-400">82%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-blue-500 h-full rounded-full" style="width: 82%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skill 3 -->
-                    <div class="clay-card p-6 space-y-6">
-                        <div class="flex items-center gap-3 border-b border-slate-200 dark:border-slate-700/60 pb-4">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
-                                <i class="fa-solid fa-globe text-lg"></i>
-                            </div>
-                            <h4 class="font-bold text-lg">Web Engineering</h4>
-                        </div>
-                        <div class="space-y-4 text-sm font-semibold">
-                            <div>
-                                <div class="flex justify-between mb-1"><span>HTML5 & Tailwind CSS</span><span class="text-brand-600 dark:text-brand-400">92%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full rounded-full" style="width: 92%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>JavaScript ES6+ & DOM</span><span class="text-brand-600 dark:text-brand-400">86%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full rounded-full" style="width: 86%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1"><span>WebAssembly / Pyodide Integration</span><span class="text-brand-600 dark:text-brand-400">80%</span></div>
-                                <div class="w-full bg-slate-200 dark:bg-slate-700 h-2.5 rounded-full overflow-hidden"><div class="bg-emerald-500 h-full rounded-full" style="width: 80%"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-1">My Works</h2>
+                <h3 class="text-3xl font-extrabold">Featured Projects</h3>
             </div>
-        </section>
-
-        <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/50 dark:bg-slate-800/30 border-t border-slate-200/60 dark:border-slate-800">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Featured Projects</h2>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Portfolio Showcase</h3>
-                </div>
-
-                <!-- Filter & Search Controls -->
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-                    <div class="flex flex-wrap justify-center gap-2">
-                        <button class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all clay-btn text-white" data-filter="all">All Projects</button>
-                        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all clay-btn-secondary text-slate-700 dark:text-slate-300" data-filter="uiux">UI/UX Design</button>
-                        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all clay-btn-secondary text-slate-700 dark:text-slate-300" data-filter="cpp">C / C++</button>
-                        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all clay-btn-secondary text-slate-700 dark:text-slate-300" data-filter="web">Web Dev</button>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="clay-card overflow-hidden flex flex-col group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/4f46e5/ffffff?text=C%2B%2B+Engine" alt="C++ Project" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
-
-                    <!-- Search Input -->
-                    <div class="relative w-full sm:w-64">
-                        <input type="search" id="projectSearchInput" placeholder="Cari proyek..." aria-label="Cari proyek" class="w-full pl-9 pr-4 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs font-semibold">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                    </div>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
-                    <!-- Project Card 1 -->
-                    <div class="project-card clay-card clay-card-hover overflow-hidden flex flex-col justify-between" data-category="uiux" data-title="Academic Mobile App UI/UX">
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full text-[10px] uppercase font-extrabold bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-pink-300">UI/UX Design</span>
-                                <i class="fa-solid fa-mobile-screen-button text-2xl text-pink-500"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Academic Mobile Portal UI</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Redesigning student portal interfaces for intuitive course selection, schedules, and academic progress tracking.</p>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">C++</span>
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Algorithms</span>
                         </div>
-                        <div class="p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 mt-4">
-                            <div class="flex flex-wrap gap-2 text-[11px] font-mono font-semibold text-slate-500">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Figma</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Wireframes</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Design System</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 2 -->
-                    <div class="project-card clay-card clay-card-hover overflow-hidden flex flex-col justify-between" data-category="cpp" data-title="C++ Library Management System">
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full text-[10px] uppercase font-extrabold bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-300">C / C++</span>
-                                <i class="fa-solid fa-diagram-project text-2xl text-blue-500"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Library Management CLI</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">CLI system built with C++20 utilizing doubly linked lists, struct pointers, and dynamic memory allocation.</p>
-                        </div>
-                        <div class="p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 mt-4">
-                            <div class="flex flex-wrap gap-2 text-[11px] font-mono font-semibold text-slate-500">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">C++20</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Pointers</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Linked List</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 3 -->
-                    <div class="project-card clay-card clay-card-hover overflow-hidden flex flex-col justify-between" data-category="web" data-title="Portfolio & Design Lab Site">
-                        <div class="p-6 space-y-4">
-                            <div class="flex items-center justify-between">
-                                <span class="px-3 py-1 rounded-full text-[10px] uppercase font-extrabold bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300">Web Dev</span>
-                                <i class="fa-solid fa-laptop-code text-2xl text-emerald-500"></i>
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">Portfolio & WASM Design Lab</h4>
-                            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Interactive portfolio dengan claymorphism, syntax highlighting Dracula, Python REPL via Pyodide, dan demo algoritma.</p>
-                        </div>
-                        <div class="p-6 pt-0 space-y-4 border-t border-slate-100 dark:border-slate-800/80 mt-4">
-                            <div class="flex flex-wrap gap-2 text-[11px] font-mono font-semibold text-slate-500">
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Tailwind CSS</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">WebAssembly</span>
-                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">Dracula Theme</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="playground" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Interactive Experiments</h2>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Design & Code Lab</h3>
-                    <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">
-                        Eksperimen kecil untuk menguji warna, memvisualisasikan algoritma, dan menjalankan kode langsung di browser.
-                    </p>
-                </div>
-
-                <div class="space-y-12">
-                    <!-- Tool 1: Claymorphism & Palette Customizer -->
-                    <div class="clay-card p-6 sm:p-8 space-y-6">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-palette text-pink-500"></i> Interactive Palette Generator
-                                </h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Generate harmonious UI color combinations and copy HEX values easily.</p>
-                            </div>
-                            <button id="generatePaletteBtn" class="px-5 py-2.5 clay-btn text-white text-xs font-bold flex items-center gap-2">
-                                <i class="fa-solid fa-arrows-rotate"></i> Shuffle Colors
-                            </button>
-                        </div>
-
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="paletteContainer">
-                            <div class="p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1" style="background-color: #6366f1;">
-                                <span class="bg-black/20 px-2 py-1 rounded-lg w-max">#6366F1</span>
-                                <span>Primary</span>
-                            </div>
-                            <div class="p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1" style="background-color: #0ea5e9;">
-                                <span class="bg-black/20 px-2 py-1 rounded-lg w-max">#0EA5E9</span>
-                                <span>Secondary</span>
-                            </div>
-                            <div class="p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1" style="background-color: #ec4899;">
-                                <span class="bg-black/20 px-2 py-1 rounded-lg w-max">#EC4899</span>
-                                <span>Accent</span>
-                            </div>
-                            <div class="p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1" style="background-color: #10b981;">
-                                <span class="bg-black/20 px-2 py-1 rounded-lg w-max">#10B981</span>
-                                <span>Success</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tool 2: C++ Sorting Visualizer -->
-                    <div class="clay-card p-6 sm:p-8 space-y-6">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                                    <i class="fa-solid fa-chart-simple text-brand-500"></i> C++ BubbleSort Visualizer
-                                </h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Simulate algorithmic array sorting step-by-step.</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button id="shuffleArrayBtn" class="px-4 py-2 rounded-xl clay-btn-secondary text-xs font-bold">Randomize</button>
-                                <button id="startSortBtn" class="px-5 py-2 rounded-xl clay-btn text-white text-xs font-bold flex items-center gap-1.5">
-                                    <i class="fa-solid fa-play"></i> Sort Array
-                                </button>
-                            </div>
-                        </div>
-
-                        <div id="visualizerContainer" class="h-44 flex items-end justify-center gap-2 p-4 rounded-2xl bg-slate-900 border border-slate-800">
-                            <!-- Bars rendered dynamically by JS -->
-                        </div>
-                    </div>
-
-                    <!-- Tool 3: MicroPython WebAssembly REPL Terminal -->
-                    <div class="clay-card p-6 sm:p-8 space-y-6">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                                    <i class="fa-brands fa-python text-2xl text-amber-400"></i> Python REPL Terminal
-                                </h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                    Jalankan ekspresi Python langsung di browser dengan runtime Pyodide.
-                                </p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-100 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-800 flex items-center gap-1.5">
-                                <i class="fa-solid fa-terminal text-amber-500"></i>
-                                <span>Python REPL via Pyodide</span>
-                            </span>
-                        </div>
-
-                        <!-- REPL Screen with Dedicated Scrollbar -->
-                        <div class="rounded-2xl bg-slate-950 p-4 sm:p-6 font-mono text-xs sm:text-sm text-slate-200 border border-slate-800 shadow-2xl space-y-2 custom-scrollbar overflow-y-auto h-[300px]" id="replTerminalWindow" role="log" aria-live="polite">
-                            <div class="text-slate-400 font-mono" id="pythonVersionBanner">Pyodide Python runtime sedang disiapkan...</div>
-                            <div class="text-slate-400 font-mono mb-3">Type "help()" for more information.</div>
-                            <div id="replOutputHistory" class="space-y-1"></div>
-                            
-                            <!-- Input Prompt Row -->
-                            <div class="flex items-center gap-2 pt-1">
-                                <span class="text-emerald-400 font-bold select-none">&gt;&gt;&gt;</span>
-                                <input type="text" id="replInputLine" class="flex-grow bg-transparent text-emerald-300 font-mono text-xs sm:text-sm focus:outline-none border-none p-0" placeholder="Type Python code here... (e.g. import math as m, m.pi)" spellcheck="false" autocomplete="off" disabled>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tool 4: C++ WASM Interactive Compiler & Shell with Dracula Theme -->
-                    <div class="clay-card p-6 sm:p-8 space-y-6">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
-                                    <i class="fa-solid fa-code text-2xl text-[#ff79c6]"></i> C++ Code Output Demo
-                                </h4>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                    Tulis kode C++20 dan lihat simulasi output dengan syntax highlighting <span class="text-[#bd93f9] font-bold">Dracula Theme</span>.
-                                </p>
-                            </div>
-                            <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-purple-950/80 text-purple-300 border border-purple-800 flex items-center gap-1.5 shadow-sm">
-                                <i class="fa-solid fa-wand-magic-sparkles text-[#ff79c6]"></i>
-                                <span>Demo output • C++20</span>
-                            </span>
-                        </div>
-
-                        <!-- Presets & Controls -->
-                        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-                            <div class="flex items-center gap-2 flex-wrap font-bold">
-                                <span class="text-slate-500 dark:text-slate-400 text-xs">Templates:</span>
-                                <button class="cpp-preset-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-purple-400" data-preset="hello">Hello World</button>
-                                <button class="cpp-preset-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-purple-400" data-preset="pointers">Pointers & Memory</button>
-                                <button class="cpp-preset-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-purple-400" data-preset="linkedlist">Linked List</button>
-                                <button class="cpp-preset-btn px-3 py-1.5 rounded-xl clay-btn-secondary text-[11px] hover:text-purple-400" data-preset="algorithm">QuickSort</button>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button id="clearCppConsoleBtn" class="px-3 py-1.5 rounded-xl clay-btn-secondary text-xs font-bold text-slate-600 dark:text-slate-300">
-                                    <i class="fa-solid fa-trash-can mr-1"></i> Clear Log
-                                </button>
-                                <button id="runCppBtn" class="px-5 py-2 rounded-xl clay-btn text-white text-xs font-bold flex items-center gap-1.5 shadow-md">
-                                    <i class="fa-solid fa-play text-xs"></i> Compile & Run
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- C++ Dracula Code Editor + Terminal Split -->
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                            <!-- VS Code Dracula Editor Container -->
-                            <div class="lg:col-span-7 flex flex-col space-y-2">
-                                <div class="flex items-center justify-between text-[11px] font-mono font-semibold text-slate-400 px-1">
-                                    <span class="flex items-center gap-2">
-                                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#ff5555]"></span><span class="w-2.5 h-2.5 rounded-full bg-[#f1fa8c]"></span><span class="w-2.5 h-2.5 rounded-full bg-[#50fa7b]"></span></span>
-                                        <span class="text-[#f8f8f2] font-bold ml-1"><i class="fa-solid fa-file-code text-[#8be9fd] mr-1"></i> main.cpp</span>
-                                    </span>
-                                    <span class="text-[#ff79c6] font-mono">VS Code Dracula Mode</span>
-                                </div>
-
-                                <!-- Dracula Dual Layer Code Container -->
-                                <div class="dracula-editor-container h-[310px]">
-                                    <!-- Line Numbers -->
-                                    <div id="cppLineNumbers">1</div>
-
-                                    <!-- Invisible Textarea Input Layer -->
-                                    <textarea id="cppCodeInput" class="editor-code-layer custom-scrollbar" spellcheck="false"></textarea>
-
-                                    <!-- Dracula Highlighted Code Overlay -->
-                                    <pre id="cppCodeHighlight" class="editor-code-layer"><code id="cppCodeHighlightContent"></code></pre>
-                                </div>
-                            </div>
-
-                            <!-- Dracula Terminal Execution Output -->
-                            <div class="lg:col-span-5 flex flex-col space-y-2">
-                                <div class="flex items-center justify-between text-[11px] font-mono font-semibold text-slate-400 px-1">
-                                    <span><i class="fa-solid fa-terminal text-[#50fa7b] mr-1"></i> Execution Terminal</span>
-                                    <span id="cppCompileTime" class="text-slate-400">Target: x86_64 WASM</span>
-                                </div>
-                                <div id="cppTerminalOutput" class="w-full h-[310px] bg-[#1e1f29] text-[#f8f8f2] font-mono text-xs p-4 rounded-2xl border border-[#44475a] custom-scrollbar overflow-y-auto space-y-2 shadow-inner">
-                                    <div class="text-[#6272a4]">// Ready. Click "Compile & Run" to execute C++ code.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200/60 dark:border-slate-800">
-            <div class="max-w-4xl mx-auto text-center space-y-8">
-                <div>
-                    <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-2">Connect & Network</h2>
-                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Let's Collaborate</h3>
-                    <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm max-w-xl mx-auto">
-                        Always open to discussing UI/UX design, C/C++ systems engineering, and open-source web projects!
-                    </p>
-                </div>
-
-                <!-- Active Social Hub Card -->
-                <div class="flex justify-center">
-                    <div class="w-full max-w-md clay-card p-8 text-center space-y-6">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-3xl mx-auto shadow-lg">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xl font-bold text-slate-900 dark:text-white">GitHub Profile</h4>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Explore source code repositories & contributions</p>
-                        </div>
-
-                        <a href="https://github.com/ociiiiw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 clay-btn text-white font-bold text-sm w-full">
-                            <span>Visit @ociiiiw</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        <h4 class="font-bold text-lg mb-2">High-Performance Core</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">A robust application built with modern C++ focusing on memory management, speed optimization, and efficient data processing.</p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-brand-400 text-sm font-semibold transition-colors">
+                            <i class="fa-brands fa-github"></i> View Source
                         </a>
+                    </div>
+                </div>
 
-                        <!-- Other Social Channels (Commented out per request)
-                        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-center gap-4 text-slate-500">
-                            <a href="#" class="p-3 rounded-xl clay-btn-secondary"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="#" class="p-3 rounded-xl clay-btn-secondary"><i class="fa-brands fa-figma"></i></a>
-                            <a href="#" class="p-3 rounded-xl clay-btn-secondary"><i class="fa-brands fa-instagram"></i></a>
+                <!-- Project 2 -->
+                <div class="clay-card overflow-hidden flex flex-col group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/0ea5e9/ffffff?text=Web+Portfolio" alt="Web Project" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">HTML/JS</span>
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Tailwind</span>
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">WASM</span>
                         </div>
-                        -->
+                        <h4 class="font-bold text-lg mb-2">Interactive Developer Hub</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">A modern portfolio featuring a claymorphism design system, dark mode toggle, and an embedded WebAssembly Python IDE.</p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-brand-400 text-sm font-semibold transition-colors">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="clay-card overflow-hidden flex flex-col group">
+                    <div class="relative overflow-hidden">
+                        <img src="https://placehold.co/600x400/ec4899/ffffff?text=UI/UX+Design" alt="Design Project" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-3">
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Figma</span>
+                            <span class="px-2 py-1 text-[10px] font-bold rounded bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300">Prototyping</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2">Fintech App Redesign</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">A conceptual redesign for a mobile banking application focusing on accessibility, clear user flows, and minimalist aesthetics.</p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-brand-400 text-sm font-semibold transition-colors">
+                            <i class="fa-brands fa-figma"></i> View in Figma
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design & Code Lab Section (Only Python WebAssembly) -->
+        <section id="lab" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8 scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 dark:text-brand-400 mb-1">Interactive Sandbox</h2>
+                <h3 class="text-3xl font-extrabold">Design & Code Lab</h3>
+            </div>
+
+            <!-- Python / Pyodide REPL Terminal -->
+            <div class="clay-card p-4 sm:p-6 md:p-8 space-y-4 max-w-4xl mx-auto">
+                <div class="border-b border-slate-200/50 dark:border-slate-700/50 pb-3">
+                    <h4 class="text-lg sm:text-xl font-bold flex items-center gap-2">
+                        <i class="fa-brands fa-python text-yellow-500"></i> Python Interactive Terminal
+                    </h4>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Powered by WebAssembly (Pyodide). Try <code class="bg-slate-200 dark:bg-slate-800 px-1 rounded text-pink-500">print("Hello")</code> or <code class="bg-slate-200 dark:bg-slate-800 px-1 rounded text-pink-500">import math</code>.</p>
+                </div>
+
+                <div id="replTerminalWindow" class="rounded-2xl bg-slate-950 p-3 sm:p-4 font-mono text-[11px] sm:text-xs text-slate-200 h-[350px] overflow-y-auto custom-scrollbar flex flex-col">
+                    <div class="text-slate-400 pb-2 border-b border-slate-800 text-[10px] sm:text-[11px] leading-relaxed">
+                        CPython 3.11 WebAssembly Engine <br>
+                        <span class="text-slate-500">Tip: Press <kbd class="bg-slate-800 px-1 rounded text-slate-300">Enter</kbd> to run code, <kbd class="bg-slate-800 px-1 rounded text-slate-300">Shift + Enter</kbd> for a new line.</span>
+                    </div>
+                    <div id="replOutputHistory" class="pt-2 space-y-1"></div>
+                    <div class="flex gap-2 pt-2 text-slate-100">
+                        <span class="text-emerald-400 font-bold mt-0.5">&gt;&gt;&gt;</span>
+                        <textarea id="replInputPrompt" rows="1" class="bg-transparent flex-grow outline-none font-mono text-slate-100 resize-none overflow-hidden custom-scrollbar" placeholder="Type python code..."></textarea>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-8 text-center text-xs text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 font-semibold">
-            <p>&copy; 2026 Yoshe Aprillia Tsabita. All rights reserved.</p>
-            <a href="#hero" class="hover:text-brand-600 dark:hover:text-brand-400">
-                Back to Top <i class="fa-solid fa-arrow-up ml-1"></i>
-            </a>
-        </div>
+    <footer class="py-6 border-t border-slate-200/50 dark:border-slate-800/50 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Yoshe Aprillia. Crafted with passion & precision.</p>
     </footer>
 
-    <!-- Toast Alert Notification Element -->
-    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div class="px-5 py-3.5 rounded-2xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-2xl flex items-center gap-3 text-xs font-bold border border-slate-800 dark:border-slate-200">
-            <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
-            <span id="toastText">Notification message</span>
-        </div>
-    </div>
-
+    <!-- JavaScript Logic -->
     <script>
-        const escapeHtml = (str) => {
-            return str.replace(/[&<>"']/g, (m) => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            })[m]);
-        };
-
-        const showToast = (message, iconClass = 'fa-circle-check') => {
-            const toast = document.getElementById('toastNotification');
-            const toastText = document.getElementById('toastText');
-            const toastIcon = document.getElementById('toastIcon');
-
-            if (!toast || !toastText || !toastIcon) return;
-
-            toastText.textContent = message;
-            toastIcon.className = `fa-solid ${iconClass} text-emerald-400 text-base`;
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        };
-
-        // Theme Toggle Handler
+        // Theme Toggle
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
-
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialDark = savedTheme ? savedTheme === 'dark' : prefersDark;
-        document.documentElement.classList.toggle('dark', initialDark);
-
-        if (themeToggleBtn && themeIcon) {
-            const updateThemeControl = (isDark) => {
-                themeIcon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-700';
-                themeToggleBtn.setAttribute('aria-pressed', String(isDark));
-                themeToggleBtn.setAttribute('aria-label', isDark ? 'Gunakan tema terang' : 'Gunakan tema gelap');
-            };
-
-            updateThemeControl(initialDark);
-            themeToggleBtn.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                const isDark = document.documentElement.classList.contains('dark');
-                localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
-                updateThemeControl(isDark);
-                showToast(isDark ? 'Dark Theme Activated' : 'Light Theme Activated', isDark ? 'fa-sun' : 'fa-moon');
-            });
-        }
-
-        // Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                const isOpen = mobileMenu.classList.toggle('hidden') === false;
-                mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
-                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Tutup navigasi' : 'Buka navigasi');
-                mobileMenuBtn.querySelector('i').className = isOpen ? 'fa-solid fa-xmark text-lg' : 'fa-solid fa-bars text-lg';
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                    mobileMenuBtn.setAttribute('aria-label', 'Buka navigasi');
-                    mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars text-lg';
-                });
-            });
-        }
-
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const projectCards = document.querySelectorAll('.project-card');
-        const projectSearchInput = document.getElementById('projectSearchInput');
-        const projectEmptyState = document.getElementById('projectEmptyState');
-
-        const filterProjects = () => {
-            const activeBtn = document.querySelector('.filter-btn.clay-btn');
-            const category = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
-            const query = projectSearchInput ? projectSearchInput.value.toLowerCase().trim() : '';
-
-            let visibleProjects = 0;
-            projectCards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                const cardText = `${card.getAttribute('data-title')} ${card.textContent}`.toLowerCase();
-                const matchesCat = (category === 'all' || cardCat === category);
-                const matchesQuery = cardText.includes(query);
-
-                if (matchesCat && matchesQuery) {
-                    card.style.display = 'flex';
-                    visibleProjects++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (projectEmptyState) {
-                projectEmptyState.classList.toggle('hidden', visibleProjects > 0);
-            }
-        };
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => {
-                    b.classList.remove('clay-btn', 'text-white');
-                    b.classList.add('clay-btn-secondary', 'text-slate-700', 'dark:text-slate-300');
-                });
-                btn.classList.remove('clay-btn-secondary', 'text-slate-700', 'dark:text-slate-300');
-                btn.classList.add('clay-btn', 'text-white');
-                filterProjects();
-            });
+        themeToggleBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            themeIcon.className = document.documentElement.classList.contains('dark') ? 'fa-solid fa-sun text-yellow-400' : 'fa-solid fa-moon';
         });
 
-        if (projectSearchInput) {
-            projectSearchInput.addEventListener('input', filterProjects);
-        }
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        const generatePaletteBtn = document.getElementById('generatePaletteBtn');
-        const paletteContainer = document.getElementById('paletteContainer');
-
-        const getRandomHex = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
-
-        if (generatePaletteBtn && paletteContainer) {
-            generatePaletteBtn.addEventListener('click', () => {
-                const labels = ['Primary', 'Secondary', 'Accent', 'Highlight'];
-                paletteContainer.innerHTML = '';
-
-                for (let i = 0; i < 4; i++) {
-                    const hex = getRandomHex();
-                    const card = document.createElement('div');
-                    card.className = 'p-4 rounded-2xl flex flex-col justify-between h-36 text-white font-mono text-xs font-bold shadow-lg transition-transform hover:-translate-y-1 cursor-pointer';
-                    card.style.backgroundColor = hex;
-                    card.setAttribute('role', 'button');
-                    card.setAttribute('tabindex', '0');
-                    card.setAttribute('aria-label', `Salin warna ${hex}`);
-                    card.innerHTML = `
-                        <span class="bg-black/20 px-2 py-1 rounded-lg w-max">${hex}</span>
-                        <span>${labels[i]}</span>
-                    `;
-                    const copyColor = async () => {
-                        try {
-                            await navigator.clipboard.writeText(hex);
-                            showToast(`Copied ${hex} to clipboard!`, 'fa-copy');
-                        } catch (error) {
-                            showToast('Clipboard tidak tersedia di browser ini.', 'fa-triangle-exclamation');
-                        }
-                    };
-                    card.addEventListener('click', copyColor);
-                    card.addEventListener('keydown', (event) => {
-                        if (event.key === 'Enter' || event.key === ' ') {
-                            event.preventDefault();
-                            copyColor();
-                        }
-                    });
-                    paletteContainer.appendChild(card);
-                }
-                showToast('Generated New Palette!', 'fa-palette');
-            });
-        }
-
-        let arrayData = [45, 80, 25, 95, 60, 30, 70, 15, 90, 40];
-        const visualizerContainer = document.getElementById('visualizerContainer');
-        const shuffleArrayBtn = document.getElementById('shuffleArrayBtn');
-        const startSortBtn = document.getElementById('startSortBtn');
-
-        const renderVisualizer = (activeIndices = [], sortedIndices = []) => {
-            if (!visualizerContainer) return;
-            visualizerContainer.innerHTML = '';
-            arrayData.forEach((val, idx) => {
-                const bar = document.createElement('div');
-                bar.style.height = `${val}%`;
-                bar.className = 'flex-1 rounded-t-lg transition-all duration-150 flex items-end justify-center pb-1 text-[10px] font-mono font-bold text-white';
-
-                if (activeIndices.includes(idx)) {
-                    bar.className += ' bg-pink-500';
-                } else if (sortedIndices.includes(idx)) {
-                    bar.className += ' bg-emerald-500';
-                } else {
-                    bar.className += ' bg-brand-500';
-                }
-
-                visualizerContainer.appendChild(bar);
-            });
-        };
-
-        if (shuffleArrayBtn) {
-            shuffleArrayBtn.addEventListener('click', () => {
-                arrayData = Array.from({ length: 10 }, () => Math.floor(Math.random() * 85) + 15);
-                renderVisualizer();
-                showToast('Array Randomized!', 'fa-shuffle');
-            });
-        }
-
-        if (startSortBtn) {
-            startSortBtn.addEventListener('click', async () => {
-                startSortBtn.disabled = true;
-                const n = arrayData.length;
-                let sortedIndices = [];
-
-                for (let i = 0; i < n - 1; i++) {
-                    for (let j = 0; j < n - i - 1; j++) {
-                        renderVisualizer([j, j + 1], sortedIndices);
-                        await new Promise(r => setTimeout(r, 120));
-
-                        if (arrayData[j] > arrayData[j + 1]) {
-                            let temp = arrayData[j];
-                            arrayData[j] = arrayData[j + 1];
-                            arrayData[j + 1] = temp;
-                            renderVisualizer([j, j + 1], sortedIndices);
-                            await new Promise(r => setTimeout(r, 120));
-                        }
-                    }
-                    sortedIndices.push(n - i - 1);
-                }
-                sortedIndices.push(0);
-                renderVisualizer([], sortedIndices);
-                startSortBtn.disabled = false;
-                showToast('BubbleSort Complete!', 'fa-circle-check');
-            });
-        }
-
-        function initMicroPythonREPL() {
-            const replInputLine = document.getElementById('replInputLine');
-            const replOutputHistory = document.getElementById('replOutputHistory');
-            const replTerminalWindow = document.getElementById('replTerminalWindow');
-            const pythonVersionBanner = document.getElementById('pythonVersionBanner');
-
-            if (!replInputLine || !replOutputHistory) return;
-
-            let pyodideInstance = null;
-            const cmdHistory = [];
-            let historyIdx = -1;
-
-            const loadPyodideScript = () => new Promise((resolve, reject) => {
-                if (window.loadPyodide) {
-                    resolve();
-                    return;
-                }
-
-                const script = document.createElement('script');
-                script.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js';
-                script.onload = resolve;
-                script.onerror = reject;
-                document.head.appendChild(script);
-            });
-
-            async function loadPythonWASM() {
-                try {
-                    await loadPyodideScript();
-                    pyodideInstance = await loadPyodide();
-
-                    pyodideInstance.setStdout({
-                        batched: (text) => appendOutputLine(text, 'text-slate-200')
-                    });
-
-                    pyodideInstance.setStderr({
-                        batched: (text) => appendOutputLine(text, 'text-rose-400')
-                    });
-
-                    if (pythonVersionBanner) pythonVersionBanner.textContent = 'Python 3.11 via Pyodide siap digunakan.';
-                    replInputLine.disabled = false;
-                    replInputLine.focus();
-                } catch (err) {
-                    console.warn('Pyodide gagal dimuat, fallback interpreter digunakan:', err);
-                    if (pythonVersionBanner) pythonVersionBanner.textContent = 'Mode offline aktif: ekspresi dasar JavaScript tersedia.';
-                    replInputLine.disabled = false;
-                }
-            }
-
-            const playgroundSection = document.getElementById('playground');
-            if ('IntersectionObserver' in window && playgroundSection) {
-                const observer = new IntersectionObserver((entries, currentObserver) => {
-                    if (entries.some(entry => entry.isIntersecting)) {
-                        loadPythonWASM();
-                        currentObserver.disconnect();
-                    }
-                }, { rootMargin: '240px' });
-                observer.observe(playgroundSection);
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            if(mobileMenu.classList.contains('hidden')){
+                mobileMenuIcon.className = 'fa-solid fa-bars';
             } else {
-                loadPythonWASM();
+                mobileMenuIcon.className = 'fa-solid fa-xmark';
             }
+        }
 
-            function appendOutputLine(text, colorClass = 'text-slate-300') {
-                const outEl = document.createElement('div');
-                outEl.className = `font-mono pl-6 leading-relaxed ${colorClass} whitespace-pre-wrap`;
-                outEl.textContent = text;
-                replOutputHistory.appendChild(outEl);
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when a link is clicked
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
+
+        // Initialize Pyodide
+        let pyodideInstance = null;
+
+        async function initPyodideREPL() {
+            const loader = document.getElementById('globalLoader');
+            const bodyEl = document.getElementById('bodyElement');
+            const loadingText = document.getElementById('loadingText');
+
+            try {
+                // Initialize pyodide
+                pyodideInstance = await loadPyodide();
+                const initMsg = document.createElement('div');
+                initMsg.className = 'text-emerald-500/80 italic text-[10px] mt-1';
+                initMsg.textContent = '# Pyodide environment loaded successfully!';
+                document.getElementById('replOutputHistory').appendChild(initMsg);
+            } catch (err) {
+                console.error("Pyodide loading error:", err);
+                const errMsg = document.createElement('div');
+                errMsg.className = 'text-red-400 italic text-[10px] mt-1';
+                errMsg.textContent = '# Failed to load Pyodide environment.';
+                document.getElementById('replOutputHistory').appendChild(errMsg);
+                
+                if (loadingText) {
+                    loadingText.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-500"></i> Gagal memuat engine.';
+                }
+            } finally {
+                // Hide loader gracefully with fade out transition
+                if (loader) {
+                    // Small delay to ensure the animation is seen even on fast cache loads
+                    setTimeout(() => {
+                        loader.classList.add('opacity-0');
+                        setTimeout(() => {
+                            loader.classList.add('hidden');
+                            if (bodyEl) bodyEl.classList.remove('overflow-hidden'); // Enable page scrolling again
+                        }, 700); // Wait for CSS opacity transition to finish (700ms)
+                    }, 800); 
+                }
             }
+        }
 
-            replInputLine.addEventListener('keydown', async (e) => {
-                if (e.key === 'Enter') {
-                    const line = replInputLine.value;
-                    replInputLine.value = '';
+        // Python REPL Logic
+        const replInput = document.getElementById('replInputPrompt');
+        const replOutputHistory = document.getElementById('replOutputHistory');
+        const replWindow = document.getElementById('replTerminalWindow');
 
-                    if (line.trim() !== '') {
-                        cmdHistory.push(line);
-                        historyIdx = cmdHistory.length;
-                    }
+        // Auto-resize textarea
+        replInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
 
-                    // Append user prompt row
-                    const promptEl = document.createElement('div');
-                    promptEl.className = 'flex items-start gap-2 font-mono';
-                    promptEl.innerHTML = `<span class="text-emerald-400 font-bold">&gt;&gt;&gt;</span> <span class="text-slate-100">${escapeHtml(line)}</span>`;
-                    replOutputHistory.appendChild(promptEl);
+        replInput.addEventListener('keydown', async (e) => {
+            // Handle Shift+Enter for multi-line, plain Enter to execute
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); // Prevent new line
+                const cmd = replInput.value.trim();
+                if (!cmd) return;
 
-                    // Execute Python code
-                    await executePythonCommand(line);
+                // Print command to history
+                const cmdLine = document.createElement('div');
+                // Escape HTML tags to prevent XSS/rendering issues
+                const escapedCmd = cmd.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                cmdLine.innerHTML = `<span class="text-emerald-400 font-bold">&gt;&gt;&gt;</span> <span class="text-slate-100 whitespace-pre-wrap">${escapedCmd}</span>`;
+                replOutputHistory.appendChild(cmdLine);
+                
+                // Reset textarea
+                replInput.value = '';
+                replInput.style.height = 'auto';
 
-                    if (replTerminalWindow) {
-                        replTerminalWindow.scrollTop = replTerminalWindow.scrollHeight;
-                    }
-                } else if (e.key === 'ArrowUp') {
-                    if (cmdHistory.length > 0 && historyIdx > 0) {
-                        historyIdx--;
-                        replInputLine.value = cmdHistory[historyIdx];
-                    }
-                } else if (e.key === 'ArrowDown') {
-                    if (historyIdx < cmdHistory.length - 1) {
-                        historyIdx++;
-                        replInputLine.value = cmdHistory[historyIdx];
-                    } else {
-                        historyIdx = cmdHistory.length;
-                        replInputLine.value = '';
-                    }
-                }
-            });
+                const resLine = document.createElement('div');
+                resLine.className = 'text-slate-300 pl-4 whitespace-pre-wrap break-words';
 
-            async function executePythonCommand(cmd) {
-                const trimmed = cmd.trim();
-                if (trimmed === '') return;
-
-                if (trimmed === 'clear()' || trimmed === 'clear') {
-                    replOutputHistory.innerHTML = '';
-                    return;
-                }
-
-                if (trimmed === 'help()' || trimmed === 'help') {
-                    appendOutputLine('Welcome to the Python 3 REPL powered by Pyodide!');
-                    appendOutputLine('- Try math operations: import math as m; m.pi');
-                    appendOutputLine('- Try modules: import this, import sys, import random');
-                    appendOutputLine('- Clear console: clear()');
-                    return;
-                }
-
-                if (pyodideInstance) {
-                    try {
-                        let evalResult;
-                        // Try running as expression first to evaluate return values (e.g., m.pi or 5 + 5)
-                        try {
-                            evalResult = pyodideInstance.eval(trimmed);
-                        } catch (exprErr) {
-                            // If eval fails (statement like import math or x = 10), run as standard Python code
-                            evalResult = await pyodideInstance.runPythonAsync(trimmed);
-                        }
-
-                        // Display return result if it's an expression and not None
-                        if (evalResult !== undefined && evalResult !== null) {
-                            let resStr = String(evalResult);
-                            if (resStr !== 'None' && resStr !== '[object PyProxy]') {
-                                appendOutputLine(resStr, 'text-emerald-300');
-                            } else if (typeof evalResult === 'object' && evalResult.type === 'module') {
-                                appendOutputLine(`<module '${trimmed.replace('import ', '')}'>`, 'text-emerald-300');
-                            }
-                        }
-                    } catch (err) {
-                        const errMsg = err.message || String(err);
-                        const cleanErr = errMsg.split('\n').filter(l => !l.includes('pyodide')).join('\n');
-                        appendOutputLine(cleanErr || errMsg, 'text-rose-400');
-                    }
+                if (!pyodideInstance) {
+                    resLine.textContent = "Error: Pyodide WASM Engine is still loading, please wait...";
+                    resLine.className += ' text-yellow-400';
                 } else {
-                    // Fallback JS evaluation for offline environment
                     try {
-                        if (trimmed.startsWith('import ')) {
-                            appendOutputLine(`[Module '${trimmed.split(' ')[1]}' loaded successfully]`, 'text-emerald-300');
-                        } else {
-                            let jsRes = Function(`"use strict"; return (${trimmed})`)();
-                            if (jsRes !== undefined) appendOutputLine(String(jsRes), 'text-emerald-300');
-                        }
-                    } catch (e) {
-                        appendOutputLine(`NameError: name '${trimmed}' is not defined`, 'text-rose-400');
+                        // Capture stdout if they use print()
+                        await pyodideInstance.runPythonAsync(`
+                            import sys, io
+                            sys.stdout = io.StringIO()
+                        `);
+                        
+                        let result = await pyodideInstance.runPythonAsync(cmd);
+                        
+                        let stdout = await pyodideInstance.runPythonAsync(`sys.stdout.getvalue()`);
+                        
+                        let output = "";
+                        if (stdout) output += stdout;
+                        if (result !== undefined) output += String(result);
+                        
+                        resLine.textContent = output;
+                    } catch (err) {
+                        resLine.textContent = String(err);
+                        resLine.className += ' text-red-400';
                     }
                 }
+
+                if (resLine.textContent) replOutputHistory.appendChild(resLine);
+                replWindow.scrollTop = replWindow.scrollHeight;
             }
-        }
+        });
 
-        function initCppCompilerEngine() {
-            const cppCodeInput = document.getElementById('cppCodeInput');
-            const cppCodeHighlightContent = document.getElementById('cppCodeHighlightContent');
-            const cppLineNumbers = document.getElementById('cppLineNumbers');
-            const cppCodeHighlight = document.getElementById('cppCodeHighlight');
-            const cppTerminalOutput = document.getElementById('cppTerminalOutput');
-            const runCppBtn = document.getElementById('runCppBtn');
-            const clearCppConsoleBtn = document.getElementById('clearCppConsoleBtn');
-            const cppCompileTime = document.getElementById('cppCompileTime');
-
-            const cppPresets = {
-                hello: `#include <iostream>
-using namespace std;
-
-int main() {
-    cout << "Hello from C++20 in browser!" << endl;
-    
-    int sum = 0;
-    for (int i = 1; i <= 5; i++) {
-        sum += i;
-        cout << "Step " << i << ": current sum = " << sum << endl;
-    }
-    
-    cout << "Final Calculation Complete!" << endl;
-    return 0;
-}`,
-                pointers: `#include <iostream>
-using namespace std;
-
-int main() {
-    int secret = 42;
-    int* ptr = &secret;
-    
-    cout << "Variable 'secret' value: " << secret << endl;
-    cout << "Memory Address (&secret): 0x7ffe53a2b004" << endl;
-    cout << "Pointer value (*ptr): " << *ptr << endl;
-    
-    *ptr = 100;
-    cout << "Updated secret via pointer: " << secret << endl;
-    return 0;
-}`,
-                linkedlist: `#include <iostream>
-using namespace std;
-
-struct Node {
-    int data;
-    Node* next;
-};
-
-int main() {
-    Node* head = new Node{10, nullptr};
-    head->next = new Node{20, nullptr};
-    head->next->next = new Node{30, nullptr};
-    
-    cout << "Traversing Linked List:" << endl;
-    Node* curr = head;
-    while (curr != nullptr) {
-        cout << "[Node: " << curr->data << "] -> ";
-        curr = curr->next;
-    }
-    cout << "NULL" << endl;
-    return 0;
-}`,
-                algorithm: `#include <iostream>
-using namespace std;
-
-int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    int n = 7;
-    
-    cout << "Original Array: 64, 34, 25, 12, 22, 11, 90" << endl;
-    
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
-            }
-        }
-    }
-    
-    cout << "Sorted Array: 11 12 22 25 34 64 90" << endl;
-    return 0;
-}`
-            };
-
-            // Dracula Syntax Highlighting Regex Engine
-            function highlightDraculaCpp(code) {
-                let escaped = escapeHtml(code);
-
-                const regex = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("([^"\\]|\\.)*"|'([^'\\]|\\.)*')|(#[a-zA-Z]+)|(&lt;[a-zA-Z0-9_.]*&gt;)|(\b0x[0-9a-fA-F]+\b|\b\d+(?:\.\d+)?f?\b)|(\b(?:int|float|double|char|bool|void|auto|long|short|unsigned|signed|struct|class|public|private|protected|return|if|else|for|while|do|switch|case|break|continue|new|delete|namespace|using|const|constexpr|template|typename|nullptr|true|false)\b)|(\b(?:std|cout|cin|endl|string|vector|pair|map|set|swap)\b)|(\b[a-zA-Z_][a-zA-Z0-9_]*(?=\s*\())|(\b[A-Z][a-zA-Z0-9_]*\b)/g;
-
-                return escaped.replace(regex, (m, comment, stringVal, directive, headerInclude, numVal, keywordVal, builtinVal, funcVal, typeVal) => {
-                    if (comment) return `<span style="color: #6272a4; font-style: italic;">${comment}</span>`;
-                    if (stringVal) return `<span style="color: #50fa7b;">${stringVal}</span>`;
-                    if (directive) return `<span style="color: #ff79c6; font-weight: bold;">${directive}</span>`;
-                    if (headerInclude) return `<span style="color: #f1fa8c;">${headerInclude}</span>`;
-                    if (numVal) return `<span style="color: #bd93f9;">${numVal}</span>`;
-                    if (keywordVal) return `<span style="color: #ff79c6; font-weight: 600;">${keywordVal}</span>`;
-                    if (builtinVal) return `<span style="color: #ffb86c; font-weight: 600;">${builtinVal}</span>`;
-                    if (funcVal) return `<span style="color: #8be9fd;">${funcVal}</span>`;
-                    if (typeVal) return `<span style="color: #f1fa8c; font-weight: 600;">${typeVal}</span>`;
-                    return m;
-                });
-            }
-
-            function updateEditorView() {
-                if (!cppCodeInput || !cppCodeHighlightContent || !cppLineNumbers) return;
-
-                const code = cppCodeInput.value;
-                cppCodeHighlightContent.innerHTML = highlightDraculaCpp(code) + '\n';
-
-                // Line Numbers Update
-                const linesCount = code.split('\n').length;
-                let lineNumHtml = '';
-                for (let i = 1; i <= linesCount; i++) {
-                    lineNumHtml += i + '<br>';
-                }
-                cppLineNumbers.innerHTML = lineNumHtml;
-            }
-
-            if (cppCodeInput) {
-                cppCodeInput.value = cppPresets.hello;
-                updateEditorView();
-
-                // Synchronize scroll position between input, highlight layer, and line numbers
-                cppCodeInput.addEventListener('scroll', () => {
-                    if (cppCodeHighlight) {
-                        cppCodeHighlight.scrollTop = cppCodeInput.scrollTop;
-                        cppCodeHighlight.scrollLeft = cppCodeInput.scrollLeft;
-                    }
-                    if (cppLineNumbers) {
-                        cppLineNumbers.scrollTop = cppCodeInput.scrollTop;
-                    }
-                });
-
-                cppCodeInput.addEventListener('input', updateEditorView);
-            }
-
-            document.querySelectorAll('.cpp-preset-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const key = btn.getAttribute('data-preset');
-                    if (cppPresets[key] && cppCodeInput) {
-                        cppCodeInput.value = cppPresets[key];
-                        updateEditorView();
-                        showToast(`Loaded C++ Dracula Template: ${btn.textContent}`, 'fa-code');
-                    }
-                });
-            });
-
-            if (clearCppConsoleBtn) {
-                clearCppConsoleBtn.addEventListener('click', () => {
-                    if (cppTerminalOutput) {
-                        cppTerminalOutput.innerHTML = '<div class="text-[#6272a4]">// Terminal log cleared.</div>';
-                    }
-                });
-            }
-
-            if (runCppBtn) {
-                runCppBtn.addEventListener('click', () => {
-                    executeCppCode();
-                });
-            }
-
-            function executeCppCode() {
-                if (!cppCodeInput || !cppTerminalOutput) return;
-
-                const src = cppCodeInput.value;
-                const startTime = performance.now();
-
-                cppTerminalOutput.innerHTML = `
-                    <div class="text-[#8be9fd] font-bold">&gt; g++ -std=c++20 main.cpp -o main.out</div>
-                    <div class="text-[#6272a4]">&gt; Compiling WASM bytecode with Dracula toolchain...</div>
-                `;
-
-                setTimeout(() => {
-                    const lines = src.split('\n');
-                    let outputLines = [];
-
-                    lines.forEach(line => {
-                        const trimmed = line.trim();
-                        if (trimmed.startsWith('cout') || trimmed.includes('cout <<')) {
-                            let parts = trimmed.split('<<').slice(1);
-                            let lineOut = '';
-                            parts.forEach(p => {
-                                p = p.trim().replace(';', '');
-                                if (p === 'endl') return;
-                                if (p.startsWith('"') && p.endsWith('"')) {
-                                    lineOut += p.slice(1, -1);
-                                } else {
-                                    try {
-                                        let evaluated = Function(`"use strict"; return (${p})`)();
-                                        lineOut += evaluated;
-                                    } catch(e) {
-                                        lineOut += p.replace(/['"]/g, '');
-                                    }
-                                }
-                            });
-                            if (lineOut) outputLines.push(lineOut);
-                        }
-                    });
-
-                    const endTime = performance.now();
-                    const elapsed = (endTime - startTime).toFixed(1);
-
-                    let resultHtml = `
-                        <div class="text-[#50fa7b] font-bold">&gt; Compilation Successful! (${elapsed} ms)</div>
-                        <div class="text-[#6272a4] border-b border-[#44475a] pb-2 mb-2">&gt; Program Output:</div>
-                    `;
-
-                    if (outputLines.length > 0) {
-                        outputLines.forEach(l => {
-                            resultHtml += `<div class="text-[#f8f8f2] font-mono">${escapeHtml(l)}</div>`;
-                        });
-                    } else {
-                        resultHtml += `<div class="text-[#f1fa8c]">[Process exited with code 0]</div>`;
-                    }
-
-                    cppTerminalOutput.innerHTML = resultHtml;
-                    if (cppCompileTime) cppCompileTime.textContent = `Compiled in ${elapsed} ms`;
-                    showToast('C++ Program Executed Successfully!', 'fa-play');
-                }, 280);
-            }
-        }
-
-        // DOM Loaded Initializer
+        // Start initialization on page load
         window.addEventListener('DOMContentLoaded', () => {
-            renderVisualizer();
-            initMicroPythonREPL();
-            initCppCompilerEngine();
+            initPyodideREPL();
         });
     </script>
 </body>
