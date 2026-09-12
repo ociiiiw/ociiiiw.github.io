@@ -386,6 +386,18 @@
             try {
                 // Initialize pyodide
                 pyodideInstance = await loadPyodide();
+
+                // Menjembatani fungsi input() agar menggunakan prompt JavaScript
+                await pyodideInstance.runPythonAsync(`
+import builtins
+from js import prompt
+
+def web_input(p=""):
+    val = prompt(p)
+    return val if val is not None else ""
+builtins.input = web_input
+                `);
+
                 const initMsg = document.createElement('div');
                 initMsg.className = 'text-emerald-500/80 italic text-[10px] mt-1';
                 initMsg.textContent = '# Pyodide environment loaded successfully!';
@@ -432,6 +444,20 @@
                 e.preventDefault(); // Prevent new line
                 const cmd = replInput.value.trim();
                 if (!cmd) return;
+
+                // Fitur kustom untuk membersihkan layar (Terminal Clear)
+                if (cmd === 'clear' || cmd === 'clear()') {
+                    replOutputHistory.innerHTML = '';
+                    replInput.value = '';
+                    replInput.style.height = 'auto';
+                    
+                    // Tambahkan pesan inisialisasi ulang agar tidak terlalu kosong
+                    const initMsg = document.createElement('div');
+                    initMsg.className = 'text-emerald-500/80 italic text-[10px] mt-1';
+                    initMsg.textContent = '# Terminal cleared.';
+                    replOutputHistory.appendChild(initMsg);
+                    return; // Hentikan proses, jangan kirim 'clear' ke Python
+                }
 
                 // Print command to history
                 const cmdLine = document.createElement('div');
